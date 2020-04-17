@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "512099169454",
+    "firebase_url": "https://odd-jobes.firebaseio.com",
+    "project_id": "odd-jobes",
+    "storage_bucket": "odd-jobes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512099169454:android:feea6654e4b77201bd693f",
+        "android_client_info": {
+          "package_name": "com.developerdesk9.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512099169454-aqt2n2bernluagrtml8rdgisjo67fc6o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.developerdesk9.ecommerce",
+            "certificate_hash": "75c0f960a585c39a0f70a5c4befa706b647601d9"
+          }
+        },
+        {
+          "client_id": "512099169454-2bn0pfaqm4ulqlj86kdt6dlh6sojrise.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJjmSX5ZrGPQM7_nhPClnYcvaGkbVzbB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512099169454-2bn0pfaqm4ulqlj86kdt6dlh6sojrise.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
