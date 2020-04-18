@@ -1,5 +1,6 @@
 package com.developerdesk9.ecommerce;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -44,11 +45,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Log Out", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-                mAuth.signOut();
-                finish();
+                Intent orderIntent = new Intent(MainActivity.this, CartListActivity.class);
+                startActivity(orderIntent);
+                // redirect to cart
 
             }
         });

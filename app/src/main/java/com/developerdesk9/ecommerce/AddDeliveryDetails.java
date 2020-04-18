@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -66,7 +67,7 @@ public class AddDeliveryDetails extends AppCompatActivity {
 //        setSupportActionBar(toolbar14);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        toolbar14.setNavigationIcon(getResources().getDrawable(R.mipmap.back));
+//        toolbar14.setNavigationIcon(getResources().getDrawable(R.mipmap.ic_launcher));
 //        toolbar14.setNavigationOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -98,14 +99,13 @@ public class AddDeliveryDetails extends AppCompatActivity {
                             etADAddress.setError("Please enter address");
                         } else {
 
-                            //TODO :: add cartBUY
-
-//                            Intent cartBuyIntent = new Intent(AddDeliveryDetails.this, CartBuyActivity.class);
-//                            cartBuyIntent.putExtra("total_product_count", String.valueOf(total_product_count));
-//                            cartBuyIntent.putExtra("total_price", String.valueOf(total_price));
-//                            cartBuyIntent.putExtra("name", name);
-//                            cartBuyIntent.putExtra("address", address);
-//                            startActivity(cartBuyIntent);
+                            //redirect to pre-order confirmation for cart items
+                            Intent cartBuyIntent = new Intent(AddDeliveryDetails.this, Preorder_confirmation_cartitems.class);
+                            cartBuyIntent.putExtra("total_product_count", String.valueOf(total_product_count));
+                            cartBuyIntent.putExtra("total_price", String.valueOf(total_price));
+                            cartBuyIntent.putExtra("name", name);
+                            cartBuyIntent.putExtra("address", address);
+                            startActivity(cartBuyIntent);
                         }
 
 
@@ -125,10 +125,12 @@ public class AddDeliveryDetails extends AppCompatActivity {
                             etADAddress.setError("Please enter address");
                         } else {
 
-                            //TODO :: add Buy Activity
+                            //TODO ::Pre-order confirmation
 
-                            /*
-                            Intent productIntent = new Intent(AddDeliveryDetails.this, BuyActivity.class);
+                            Toast.makeText(getApplicationContext(),"no",Toast.LENGTH_LONG).show();
+
+
+                            Intent productIntent = new Intent(AddDeliveryDetails.this, OrderConfirmation.class);
                             //productIntent.putExtra("product_key", );
                             productIntent.putExtra("product_name", product_name);
                             productIntent.putExtra("product_price", product_price);
@@ -138,7 +140,7 @@ public class AddDeliveryDetails extends AppCompatActivity {
                             productIntent.putExtra("name", name);
                             productIntent.putExtra("address", address);
                             startActivity(productIntent);
-                             */
+
                         }
 
                     }

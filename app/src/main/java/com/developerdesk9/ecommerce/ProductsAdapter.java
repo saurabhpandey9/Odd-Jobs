@@ -89,8 +89,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 //            }
 //        });
 
-        viewHolder.button14.setOnClickListener(new View.OnClickListener() {
-            @Override
+        viewHolder.buy_now_btn_pl.setOnClickListener(new View.OnClickListener() {
+                @Override
             public void onClick(View v) {
                 Intent productIntent = new Intent(mContext, AddDeliveryDetails.class);
                 //productIntent.putExtra("product_key", );
@@ -101,6 +101,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                 productIntent.putExtra("seller_name", products.getCompany_name());
                 productIntent.putExtra("from_cart", "no");
                 mContext.startActivity(productIntent);
+
             }
         });
 
@@ -129,7 +130,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-//        return 1;
         return productsList.size();
     }
 
@@ -139,7 +139,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         private TextView tvProductName, tvProductPrice, tvProductDesc, tvSellerName;
         private CardView productcv;
         private ProgressBar progressBar3;
-        private Button button14, button15;
+        private Button buy_now_btn_pl, button15;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -150,7 +150,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             tvProductDesc = itemView.findViewById(R.id.tvProductDesc);
             tvSellerName = itemView.findViewById(R.id.tvSellerName);
             productcv = itemView.findViewById(R.id.productcv);
-            button14 = itemView.findViewById(R.id.button14);
+            buy_now_btn_pl = itemView.findViewById(R.id.btn_buynow_productlist);
             button15 = itemView.findViewById(R.id.button15);
             //progressBar3 = itemView.findViewById(R.id.progressBar3);
         }
