@@ -139,7 +139,14 @@ public class CartListActivity extends AppCompatActivity {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Cart cart = ds.getValue(Cart.class);
 
-                        Integer cost = Integer.valueOf(cart.getProduct_price());
+                        Integer cost = null;
+                        try {
+                            cost = Integer.valueOf(cart.getProduct_price());
+
+                        } catch (Exception e) {
+                            cost=0;
+                        }
+
                         total_price = total_price + cost;
 
                     }
