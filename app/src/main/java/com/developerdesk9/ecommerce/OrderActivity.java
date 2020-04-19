@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -25,7 +26,7 @@ import java.util.List;
 
 public class OrderActivity extends AppCompatActivity {
 
-    private Toolbar toolbar10;
+    private Toolbar toolbar;
 
     private TextView textView34;
 
@@ -46,21 +47,19 @@ public class OrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order);
 
 
+        //Todo : Toolbar implementation
+        toolbar=findViewById(R.id.toolbar10);
+        toolbar.setTitle("My Orders");
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         mContext =getApplicationContext();
-//
-//        toolbar10 = findViewById(R.id.toolbar10);
-//        toolbar10.setTitle("Your orders");
-//        setSupportActionBar(toolbar10);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        toolbar10.setNavigationIcon(getResources().getDrawable(R.mipmap.ic_launcher));
-//        toolbar10.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onBackPressed();
-//            }
-//        });
 
         textView34 = findViewById(R.id.textView34);
 

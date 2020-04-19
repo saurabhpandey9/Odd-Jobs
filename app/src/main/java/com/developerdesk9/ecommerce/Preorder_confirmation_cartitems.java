@@ -48,18 +48,16 @@ public class Preorder_confirmation_cartitems extends AppCompatActivity {
         total_price = bundle.get("total_price").toString();
         total_product_count = bundle.get("total_product_count").toString();
 
-//        toolbar13 = findViewById(R.id.toolbar13);
-//        toolbar13.setTitle("Place order");
-//        setSupportActionBar(toolbar13);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        toolbar13.setNavigationIcon(getResources().getDrawable(R.mipmap.back));
-//        toolbar13.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onBackPressed();
-//            }
-//        });
+        toolbar13 = findViewById(R.id.toolbar13);
+        toolbar13.setTitle("Place order");
+        setSupportActionBar(toolbar13);
+        toolbar13.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
+        toolbar13.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         tvCBName = findViewById(R.id.tvCBName);
         tvCBAddress = findViewById(R.id.tvCBAddress);
@@ -116,9 +114,10 @@ public class Preorder_confirmation_cartitems extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Product purchased successfully", Toast.LENGTH_LONG).show();
 
         // Todo 1. Ordered  Items list yet to built
-//        Intent orderIntent = new Intent(Preorder_confirmation_cartitems.this, OrderActivity.class);
-//        startActivity(orderIntent);
-//        finish();
+
+        Intent orderIntent = new Intent(Preorder_confirmation_cartitems.this, OrderActivity.class);
+        startActivity(orderIntent);
+        finish();
 
     }
 

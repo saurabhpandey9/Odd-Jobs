@@ -80,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
+
+            case  R.id.action_my_account:
+                startActivity(new Intent(getApplicationContext(),MyAccount.class));
+                return true;
             case R.id.action_settings:
                 startActivity(new Intent(getApplicationContext(),OrderActivity.class));
                 return true;

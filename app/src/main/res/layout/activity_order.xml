@@ -10,7 +10,7 @@
         android:id="@+id/toolbar10"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/cardview_light_background"
+        android:background="@color/toolbar"
         android:elevation="1dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"

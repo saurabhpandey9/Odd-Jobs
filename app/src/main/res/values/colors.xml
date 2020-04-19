@@ -10,6 +10,11 @@
     <color name="colorTransparent">#0000ffff</color>
 
 
+    <!--my account related color -->
+    <color name="toolbar">#33ADFF</color>
+    <color name="my_account_color">#FFFF</color>
+    <color name="Text_color_heading_cardview">#070707</color>
+    <color name="Text_color_link_cardview">#33ADFF</color>
 
 
 
