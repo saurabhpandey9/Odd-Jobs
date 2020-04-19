@@ -29,13 +29,45 @@
 
             <TextView
                 android:id="@+id/all_addrress_address_tv"
-                android:maxLines="5"
+                android:maxLines="6"
                 android:layout_marginTop="5dp"
                 android:textSize="@dimen/Heading_cardview"
                 android:textColor="#6F6B6B"
                 android:text="Address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:padding="5dp"
+                    android:id="@+id/IV_delete_IV_myaddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_delete_blue" />
+
+                <TextView
+                    android:padding="10dp"
+                    android:id="@+id/tv_make_it_default_address"
+                    android:textAllCaps="true"
+                    android:gravity="right"
+                    android:textSize="@dimen/Heading_cardview"
+                    android:textColor="@color/Text_color_link_cardview"
+                    android:text="Set As Default Address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

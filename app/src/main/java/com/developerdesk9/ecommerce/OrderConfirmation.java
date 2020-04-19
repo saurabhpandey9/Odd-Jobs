@@ -129,8 +129,9 @@ public class OrderConfirmation extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Toast.makeText(getApplicationContext(), "Product purchased successfully", Toast.LENGTH_LONG).show();
-                Intent mainIntent = new Intent(OrderConfirmation.this, MainActivity.class);
+                Intent mainIntent = new Intent(OrderConfirmation.this, OrderActivity.class);
                 startActivity(mainIntent);
+                finish();
             }
         });
 

@@ -204,7 +204,7 @@
 
 
                     <TextView
-                        android:maxLines="3"
+                        android:maxLines="5"
                         android:id="@+id/tv_default_address_my_account"
                         android:layout_marginTop="10dp"
                         android:textSize="@dimen/Heading_cardview"

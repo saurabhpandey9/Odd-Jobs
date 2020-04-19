@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +31,8 @@ import java.util.List;
 public class MyaddressActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
+    private TextView addnewadd_tv;
+
 
 
     private DatabaseReference mDatabase;
@@ -36,7 +40,6 @@ public class MyaddressActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private String user_id;
-
     private RecyclerView addressRV;
     private List<Address> addressList = new ArrayList<>();
     private AddressAdapter maddressAdapter;
@@ -47,7 +50,7 @@ public class MyaddressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myaddress);
 
-
+        addnewadd_tv=findViewById(R.id.add_newaddress_tv);
         toolbar=findViewById(R.id.toolbar_myaddress);
         toolbar.setTitle("My Address");
         toolbar.setTitleTextColor(Color.WHITE);
@@ -68,12 +71,12 @@ public class MyaddressActivity extends AppCompatActivity {
 
         user_id=currentUser.getUid();
 //
-        addressRV=findViewById(R.id.myaddressRV);
-
+        addressRV=(RecyclerView) findViewById(R.id.myaddressRV);
         maddressAdapter=new AddressAdapter(addressList,mContext);
+        addressRV.setAdapter(maddressAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         addressRV.setLayoutManager(layoutManager);
-        addressRV.setAdapter(maddressAdapter);
+
 
 
         //Todo :: User authentication need to implement
@@ -81,6 +84,15 @@ public class MyaddressActivity extends AppCompatActivity {
 //        if ((currentUser==null)){
 //
 //        }
+
+
+        addnewadd_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),AddnewAddressActivity.class));
+            }
+        });
+
 
         mDatabase.child("users").child(user_id).child("Address").addChildEventListener(new ChildEventListener() {
             @Override
@@ -100,6 +112,19 @@ public class MyaddressActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                String key = dataSnapshot.getKey();
+                for (Address c : addressList) {
+                    if (key.equals(c.getAddress_key())) {
+                        addressList.remove(c);
+                        maddressAdapter.notifyDataSetChanged();
+                        break;
+                    }
+                }
+                Intent refreshIntent = getIntent();
+                refreshIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                refreshIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(refreshIntent);
 
             }
 

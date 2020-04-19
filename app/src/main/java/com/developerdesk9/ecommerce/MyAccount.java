@@ -53,7 +53,6 @@ public class MyAccount extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //What to do on back clicked
                 onBackPressed();
 
             }
@@ -128,10 +127,16 @@ public class MyAccount extends AppCompatActivity {
                 String sname=dataSnapshot.child("name").getValue().toString();
                 String smobilen=dataSnapshot.child("mobilenumber").getValue().toString();
                 String semail=dataSnapshot.child("email").getValue().toString();
+                String defaultname=dataSnapshot.child("DefaultAddress").child("name").getValue().toString();
+                String defaultadd=dataSnapshot.child("DefaultAddress").child("address").getValue().toString();
+
+                String finaladdress=defaultname+"\n"+defaultadd;
 
                 name.setText(sname);
                 mobilenumber.setText(smobilen);
                 email.setText(semail);
+                tv_default__address.setText(finaladdress);
+
                 // Todo : Account type need to be added
             }
 
