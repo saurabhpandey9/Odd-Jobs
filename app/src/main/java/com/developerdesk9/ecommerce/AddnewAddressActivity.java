@@ -58,6 +58,7 @@ public class AddnewAddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_addnew_address);
 
 
+
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -147,7 +148,7 @@ public class AddnewAddressActivity extends AppCompatActivity {
 
         String key=mDatabase.child("users").child(user_id).child("Address").push().getKey();
 
-        String address=saddressnew3+",\n "+saddressnew4+","+saddressnew5+",\n "+saddressnew6+"-"+saddressnew7+" \n +91 "+saddressnew2;
+        String address=saddressnew3+",\n"+saddressnew4+","+saddressnew5+",\n"+saddressnew6+"-"+saddressnew7+"\n+91 "+saddressnew2;
         Map<String, Object> dataMap = new HashMap<>();
         dataMap.put("name", saddressnew1);
         dataMap.put("address", address);

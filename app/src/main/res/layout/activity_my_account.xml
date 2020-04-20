@@ -198,7 +198,7 @@
                     <TextView
                         android:textSize="@dimen/Heading_cardview"
                         android:textColor="@color/Text_color_heading_cardview"
-                        android:text="My Address"
+                        android:text="My Address (default)"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 

@@ -112,6 +112,24 @@ public class MyAccount extends AppCompatActivity {
             }
         });
 
+        tv_changepassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(getApplicationContext(),ChangePasswordActivity.class);
+
+                intent.putExtra("title","Change Password");
+                startActivity(intent);
+            }
+        });
+
+        IV_edit_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),UpdateUserDetails.class));
+            }
+        });
+
 
     }
 
@@ -133,7 +151,7 @@ public class MyAccount extends AppCompatActivity {
                 String finaladdress=defaultname+"\n"+defaultadd;
 
                 name.setText(sname);
-                mobilenumber.setText(smobilen);
+                mobilenumber.setText("+91 "+smobilen);
                 email.setText(semail);
                 tv_default__address.setText(finaladdress);
 

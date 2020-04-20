@@ -27,7 +27,7 @@ public class login extends AppCompatActivity {
     private EditText etLEmail, etLPassword;
     private Button lbtn, lrbtn;
 
-    private TextView signup_tv;
+    private TextView signup_tv,tv_forget_password;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
@@ -42,6 +42,7 @@ public class login extends AppCompatActivity {
         etLPassword = findViewById(R.id.etLPassword);
         lbtn = findViewById(R.id.lbtn);
         signup_tv=findViewById(R.id.signup_Ltv);
+        tv_forget_password=findViewById(R.id.forget_password_Ltv);
 
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -105,6 +106,17 @@ public class login extends AppCompatActivity {
                     });
 
                 }
+            }
+        });
+
+
+        tv_forget_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(getApplicationContext(),ChangePasswordActivity.class);
+                intent.putExtra("title","Forget Password");
+                startActivity(intent);
             }
         });
 

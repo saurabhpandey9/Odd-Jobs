@@ -92,7 +92,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         viewHolder.buy_now_btn_pl.setOnClickListener(new View.OnClickListener() {
                 @Override
             public void onClick(View v) {
-                Intent productIntent = new Intent(mContext, AddDeliveryDetails.class);
+                Intent productIntent = new Intent(mContext, ChecksumActivity.class);
                 //productIntent.putExtra("product_key", );
                 productIntent.putExtra("product_name", products.getProduct_name());
                 productIntent.putExtra("product_price", products.getProduct_price());

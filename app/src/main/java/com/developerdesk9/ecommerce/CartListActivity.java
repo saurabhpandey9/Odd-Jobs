@@ -104,7 +104,7 @@ public class CartListActivity extends AppCompatActivity {
             button7.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent buyIntent = new Intent(CartListActivity.this, AddDeliveryDetails.class);
+                    Intent buyIntent = new Intent(CartListActivity.this, ChecksumActivity.class);
                     buyIntent.putExtra("total_price", String.valueOf(total_price));
                     buyIntent.putExtra("total_product_count", String.valueOf(total_product_count));
                     buyIntent.putExtra("from_cart", "yes");
