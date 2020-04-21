@@ -31,6 +31,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if(savedInstanceState==null){
             product_listing("Electronics");
-            navigationView.setCheckedItem(R.id.nav_home);
+            navigationView.setCheckedItem(R.id.nav_electronics);
             drawer.closeDrawer(GravityCompat.START);
         }
         else {
@@ -117,12 +119,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         switch (id) {
 
+
+            case R.id.action_logout_tn:
+                startActivity(new Intent(getApplicationContext(),login.class));
+                finishAffinity();
+                mAuth.signOut();
+                return true;
+            case R.id.action_notification:
+                Toast.makeText(getApplicationContext(),"NO notification",Toast.LENGTH_LONG).show();
+                return true;
+
             case  R.id.action_my_account:
                 startActivity(new Intent(getApplicationContext(),MyAccount.class));
                 return true;
             case R.id.action_settings:
                 startActivity(new Intent(getApplicationContext(),OrderActivity.class));
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -149,25 +162,56 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        // navigation item select implementation
-
-
-
        switch (item.getItemId()){
-           case R.id.nav_home:
+           case R.id.nav_electronics:
                product_listing("Electronics");
                break;
            case R.id.nav_tv_appliances:
-               product_listing("grocery");
+               product_listing("Appliances");
                break;
+           case R.id.nav_fashion :
+               product_listing("Fashion");
+               break;
+           case R.id.nav_home_furniture :
+               product_listing("Furniture");
+               break;
+           case R.id.nav_grocery :
+               product_listing("Grocery");
+               break;
+           case R.id.nav_beauty_care :
+               product_listing("Beauty_Care");
+               break;
+           case R.id.nav_sports:
+               product_listing("Sports");
+               break;
+           case R.id.nav_books:
+               product_listing("Books");
+               break;
+
+
            case R.id.nav_mycart:
                startActivity(new Intent(getApplicationContext(),CartListActivity.class));
                break;
            case R.id.nav_myorder:
                startActivity(new Intent(getApplicationContext(),OrderActivity.class));
                break;
-           default:
+           case R.id.nav_my_account:
+               startActivity(new Intent(getApplicationContext(),MyAccount.class));
+               break;
+           case R.id.nav_logout:
+               startActivity(new Intent(getApplicationContext(),login.class));
+               finishAffinity();
+               mAuth.signOut();
+               break;
 
+
+           case R.id.nav_legal:
+               break;
+           case R.id.nav_about_developer:
+
+               break;
+
+           default:
        }
 
 

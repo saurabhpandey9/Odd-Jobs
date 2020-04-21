@@ -5,23 +5,37 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_electronics"
+            android:icon="@drawable/ic_electronics"
             android:title="Electronics" />
         <item
+            android:icon="@drawable/ic_tv_appliances"
             android:id="@+id/nav_tv_appliances"
             android:title="TV &amp; Appliances" />
         <item
+            android:icon="@drawable/ic_cloth"
             android:id="@+id/nav_fashion"
             android:title="Fashion" />
         <item
+            android:icon="@drawable/ic_furniture"
             android:id="@+id/nav_home_furniture"
             android:title="Home and Furniture" />
         <item
+            android:icon="@drawable/ic_grocery"
+            android:id="@+id/nav_grocery"
+            android:title="Grocery" />
+        <item
+            android:id="@+id/nav_beauty_care"
+            android:icon="@drawable/ic_beauty"
             android:title="Beauty &amp; Personal Care" />
 
         <item
+            android:id="@+id/nav_sports"
+            android:icon="@drawable/ic_sports"
             android:title="Sports" />
         <item
+            android:id="@+id/nav_books"
+            android:icon="@drawable/ic_book"
             android:title="Books" />
         
     </group>
@@ -29,7 +43,7 @@
 
     <group
         android:id="@+id/menu_bottom"
-        android:checkableBehavior="none">
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_myorder"
@@ -40,28 +54,28 @@
             android:icon="@drawable/ic_shopping_cart_"
             android:title="My Cart" />
         <item
+            android:icon="@drawable/ic_account"
             android:id="@+id/nav_my_account"
             android:title="My Account" />
         <item
-            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_logout"
+            android:id="@+id/nav_logout"
             android:title="Logout" />
     </group>
 
+    <group
+        android:id="@+id/menu_bottom2"
+        android:checkableBehavior="single">
 
+        <item
+            android:id="@+id/nav_legal"
+            android:icon="@drawable/ic_legal"
+            android:title="Legal" />
 
+        <item
+            android:id="@+id/nav_about_developer"
+            android:icon="@drawable/ic_about_us"
+            android:title="About developer" />
 
-    <item android:title="@string/communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_legal"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Legal" />
-
-            <item
-                android:id="@+id/nav_about_developer"
-                android:icon="@drawable/ic_menu_send"
-                android:title="About developer" />
-        </menu>
-    </item>
-
+    </group>
 </menu>

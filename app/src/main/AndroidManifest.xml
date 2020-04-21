@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ChecksumActivity"></activity>
-        <activity android:name=".SplashScreen" />
         <activity android:name=".UpdateUserDetails" />
         <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".AddnewAddressActivity"></activity>
@@ -32,8 +31,12 @@
             android:label="Odd Jobs"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".SignUp" />
-        <activity android:name=".login">
+        <activity android:name=".SplashScreen"
+            android:theme="@style/FullScreen"/>
+        <activity android:name=".SignUp"
+            android:theme="@style/FullScreen"/>
+        <activity android:name=".login"
+            android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

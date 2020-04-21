@@ -2,6 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:icon="@drawable/ic_notifications_action_bar"
+        android:id="@+id/action_notification"
+        android:orderInCategory="100"
+        android:title="Notification"
+        app:showAsAction="always" />
+    <item
+        android:title="Logout"
+        android:id="@+id/action_logout_tn"
+        android:orderInCategory="100"
+       android:icon="@drawable/ic_logout_action"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="My Order"
