@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,19 +53,18 @@ public class OrderConfirmation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_confirmation);
-//
-//        toolbar8 = findViewById(R.id.toolbar8);
-//        toolbar8.setTitle("Deliver to");
-//        setSupportActionBar(toolbar8);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        toolbar8.setNavigationIcon(getResources().getDrawable(R.mipmap.ic_launcher));
-//        toolbar8.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onBackPressed();
-//            }
-//        });
+
+        toolbar8 = findViewById(R.id.toolbar8);
+        toolbar8.setTitle("Order Summary");
+        toolbar8.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar8);
+        toolbar8.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
+        toolbar8.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         tvName = findViewById(R.id.tvName);
         tvPName = findViewById(R.id.tvPName);

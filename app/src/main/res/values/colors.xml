@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574b</color>
-    <color name="colorAccent">#2498EE</color>
+    <color name="colorPrimary">#00008b</color>
+    <color name="colorPrimaryDark">#00008b</color>
+    <color name="colorAccent">#00008b</color>
     <color name="colorBlack">#000000</color>
     <color name="colorTransparentBlack">#99000000</color>
     <color name="colorWhiteTransparent">#99ffffff</color>
@@ -11,10 +11,10 @@
 
 
     <!--my account related color -->
-    <color name="toolbar">#33ADFF</color>
+    <color name="toolbar">#00008b</color>
     <color name="my_account_color">#FFFF</color>
     <color name="Text_color_heading_cardview">#070707</color>
-    <color name="Text_color_link_cardview">#33ADFF</color>
+    <color name="Text_color_link_cardview">#00008b</color>
 
 
 

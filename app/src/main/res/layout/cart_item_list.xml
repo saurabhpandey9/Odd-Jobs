@@ -6,10 +6,11 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:layout_margin="5dp"
         android:id="@+id/productcv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardElevation="1dp"
+        app:cardElevation="2dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"

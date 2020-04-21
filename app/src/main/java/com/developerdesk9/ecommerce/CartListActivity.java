@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -64,21 +65,20 @@ public class CartListActivity extends AppCompatActivity {
 
 
         mContext = getApplicationContext();
-//
-//        toolbar6 = findViewById(R.id.toolbar6);
-//        toolbar6.setTitle("Your cart");
-//        setSupportActionBar(toolbar6);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        toolbar6.setNavigationIcon(getResources().getDrawable(R.mipmap.back));
-//        toolbar6.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onBackPressed();
-//            }
-//        });
 
-        //
+        toolbar6 = findViewById(R.id.toolbar6);
+        toolbar6.setTitle("My Cart");
+        toolbar6.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar6);
+        toolbar6.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
+        toolbar6.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+
         cartRV = (RecyclerView) findViewById(R.id.cartRV);
         cartAdapter = new CartAdapter(cartList, mContext);
         cartRV.setAdapter(cartAdapter);

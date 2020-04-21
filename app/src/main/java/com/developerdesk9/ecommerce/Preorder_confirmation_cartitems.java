@@ -50,7 +50,7 @@ public class Preorder_confirmation_cartitems extends AppCompatActivity {
         total_product_count = bundle.get("total_product_count").toString();
 
         toolbar13 = findViewById(R.id.toolbar13);
-        toolbar13.setTitle("Pre-Order Confirmation");
+        toolbar13.setTitle("Order Summary");
         toolbar13.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar13);
         toolbar13.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
