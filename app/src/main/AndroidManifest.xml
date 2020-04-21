@@ -18,31 +18,24 @@
         <activity android:name=".SplashScreen" />
         <activity android:name=".UpdateUserDetails" />
         <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".AddnewAddressActivity">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+        <activity android:name=".AddnewAddressActivity"></activity>
         <activity android:name=".MyaddressActivity" />
         <activity android:name=".MyAccount" />
         <activity android:name=".OrderActivity" />
         <activity android:name=".CartListActivity" />
         <activity android:name=".Preorder_confirmation_cartitems" />
         <activity android:name=".OrderConfirmation" />
+
         <activity
             android:screenOrientation="portrait"
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"
+            android:label="Odd Jobs"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".SignUp" />
         <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

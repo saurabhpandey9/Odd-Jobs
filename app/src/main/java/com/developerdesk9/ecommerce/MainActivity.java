@@ -4,27 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.developerdesk9.ecommerce.ui.gallery.GalleryFragment;
-import com.developerdesk9.ecommerce.ui.home.HomeFragment;
-import com.developerdesk9.ecommerce.ui.slideshow.SlideshowFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,14 +31,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TextView textView42;
+    private TextView tv_noitem;
 
     private RecyclerView recyclerview;
     private FirebaseAuth mAuth;
@@ -69,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tv_noitem=findViewById(R.id.tv_main_activity_no_item);
 
         Toolbar toolbar = findViewById(R.id.toolbar); // toolbar initialization
         setSupportActionBar(toolbar);   // setting it on action bar
@@ -170,11 +157,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            case R.id.nav_home:
                product_listing("Electronics");
                break;
-           case R.id.nav_gallery:
-                product_listing("grocery");
-               break;
-           case R.id.nav_slideshow:
-               Toast.makeText(getApplicationContext(),"nav_slideshow",Toast.LENGTH_LONG).show();
+           case R.id.nav_tv_appliances:
+               product_listing("grocery");
                break;
            case R.id.nav_mycart:
                startActivity(new Intent(getApplicationContext(),CartListActivity.class));
@@ -194,13 +178,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void product_listing(String product_type){
         productsLists.clear();
         productsAdapter.notifyDataSetChanged();
+
+        tv_noitem.setVisibility(View.VISIBLE);
+
+        getSupportActionBar().setTitle(product_type.toUpperCase()); // change the Actionbar title
+
         if (product_type != null) {
-//            toolbar4.setTitle("Electronics");
             mDatabase.child("products").child(product_type).addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     if (dataSnapshot.exists()) {
-//                        textView42.setVisibility(View.INVISIBLE);
+                        tv_noitem.setVisibility(View.INVISIBLE);
                         Products products = dataSnapshot.getValue(Products.class);
                         productsLists.add(products);
                         productsAdapter.notifyDataSetChanged();
