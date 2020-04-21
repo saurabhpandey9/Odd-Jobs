@@ -3,6 +3,8 @@ package com.developerdesk9.ecommerce;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -10,6 +12,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,26 +33,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnPausedListener;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AddNewProductActivity extends AppCompatActivity{
+public class AddNewProductActivity extends AppCompatActivity {
 
 
     private Toolbar toolbar2;
-
-
     private EditText etAddProductName, etAddProductPrice, etAddProductDescription;
     private Button addbtn;
     private ImageView imageView5;
-//    private ProgressDialog pd;
-    private Spinner sProductCategory;
+
 
     private DatabaseReference mDatabase;
     private FirebaseUser currentUser;
@@ -67,15 +69,26 @@ public class AddNewProductActivity extends AppCompatActivity{
     private String product_name;
     private String product_price;
     private String product_description;
-    private String item="Electronics";
-
+    private String item=null;
     private LinearLayout llr;
 
+    private ArrayList<String> arrylist;
+    private Spinner spinner;
+
+    private ProgressDialog progressDoalog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_product);
+
+
+        progressDoalog = new ProgressDialog(AddNewProductActivity.this);
+        progressDoalog.setMax(100);
+        progressDoalog.setMessage("Please wait...");
+        progressDoalog.setTitle("File is Uploading");
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDoalog.setCanceledOnTouchOutside(false);
 
 
         toolbar2 = findViewById(R.id.toolbar2);
@@ -98,7 +111,7 @@ public class AddNewProductActivity extends AppCompatActivity{
         etAddProductDescription = findViewById(R.id.etAddProductDescription);
         addbtn = findViewById(R.id.addbtn);
         imageView5 = findViewById(R.id.imageView5);
-        sProductCategory = findViewById(R.id.sProductCategory); //spinner
+        spinner = findViewById(R.id.sProductCategory); //spinner
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
@@ -107,22 +120,21 @@ public class AddNewProductActivity extends AppCompatActivity{
         storageReference = mStorage.getReference();
 
 
-//        List<String> categories = new ArrayList<String>();
-//        categories.add("Select Product Category");
-//        categories.add("Electronics");
-//        categories.add("Appliances");
-//        categories.add("Fashion");
-//        categories.add("Furniture");
-//        categories.add("Grocery");
-//        categories.add("Beauty_Care");
-//        categories.add("Sports");
-//        categories.add("Books");
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_spinner_dropdown_item, categories);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        sProductCategory.setAdapter(adapter);
-//        sProductCategory.setOnItemClickListener(this);
+        arrylist = new ArrayList<String>();
+        arrylist.add("Select Product Category");
+        arrylist.add("Electronics");
+        arrylist.add("Appliances");
+        arrylist.add("Fashion");
+        arrylist.add("Furniture");
+        arrylist.add("Grocery");
+        arrylist.add("Beauty_Care");
+        arrylist.add("Sports");
+        arrylist.add("Books");
 
+        ArrayAdapter<String> adapter;
+        adapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item,arrylist);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
         if (currentUser==null) {
             sendToLogin();
@@ -183,10 +195,22 @@ public class AddNewProductActivity extends AppCompatActivity{
 
         }
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                item=String.valueOf(parent.getItemAtPosition(position));
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
     }
+
+
 
     private void addproduct(){
 
@@ -200,9 +224,11 @@ public class AddNewProductActivity extends AppCompatActivity{
             etAddProductPrice.setError("Enter product price");
         } else if (product_description.isEmpty()) {
             etAddProductDescription.setError("Enter product description");
-        } else  if (item.equals("Select Category")) {
+        } else  if (item.equals("Select Product Category")) {
             Toast.makeText(getApplicationContext(), "Please select a category", Toast.LENGTH_LONG).show();
         } else {
+
+            progressDoalog.show();
 
             company_key=user_id;
 
@@ -264,11 +290,27 @@ public class AddNewProductActivity extends AppCompatActivity{
             //uploading the image
             final UploadTask uploadTask = childRef.putFile(filePath);
 
+            //Todo :: Progress bar 0 to 100 %
+            uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                    int currentprogress = (int) progress;
+                    progressDoalog.setProgress(currentprogress);
+                }
+            }).addOnPausedListener(new OnPausedListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onPaused(UploadTask.TaskSnapshot taskSnapshot) {
+                    progressDoalog.dismiss();
+                }
+            });
+
+
             uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     if (task.isSuccessful()) {
-//                        pd.dismiss();
                         Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                             @Override
                             public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
@@ -282,7 +324,6 @@ public class AddNewProductActivity extends AppCompatActivity{
                         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
-//                                pd.dismiss();
                                 if (task.isSuccessful()) {
                                     Uri downloadUri = task.getResult();
                                     String mUri = downloadUri.toString();
@@ -302,7 +343,8 @@ public class AddNewProductActivity extends AppCompatActivity{
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                mDatabase.child("business").child(company_key).child("products").child(product_key).setValue(dataMap);
+                                                mDatabase.child("BusinessAccounts").child(company_key).child("products").child(product_key).setValue(dataMap);
+                                                progressDoalog.dismiss();
                                                 Toast.makeText(getApplicationContext(), "Product added successfully", Toast.LENGTH_LONG).show();
                                                 Intent settingsIntent = new Intent(getApplicationContext(), AddNewProductActivity.class);
                                                 startActivity(settingsIntent);
@@ -312,6 +354,7 @@ public class AddNewProductActivity extends AppCompatActivity{
                                             } else {
                                                 String errMsg = task.getException().getMessage();
                                                 Toast.makeText(getApplicationContext(), "Error: " + errMsg, Toast.LENGTH_LONG).show();
+                                                progressDoalog.dismiss();
                                             }
                                         }
                                     });
@@ -320,6 +363,7 @@ public class AddNewProductActivity extends AppCompatActivity{
                                     // ...
                                     String errMsg = task.getException().getMessage();
                                     Toast.makeText(getApplicationContext(), "Download Uri Error: " + errMsg, Toast.LENGTH_LONG).show();
+                                    progressDoalog.dismiss();
                                 }
                             }
                         });
@@ -333,11 +377,13 @@ public class AddNewProductActivity extends AppCompatActivity{
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getApplicationContext(), "Upload Failed: " + e, Toast.LENGTH_LONG).show();
+                    progressDoalog.dismiss();
                 }
             });
         }
         else {
-            Toast.makeText(getApplicationContext(), "Select an image", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please select Product image", Toast.LENGTH_SHORT).show();
+            progressDoalog.dismiss();
         }
     }
 
