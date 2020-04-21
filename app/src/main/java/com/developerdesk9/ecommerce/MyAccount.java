@@ -130,6 +130,13 @@ public class MyAccount extends AppCompatActivity {
             }
         });
 
+        tv_business_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Welcome to Business Area",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getApplicationContext(),AddNewProductActivity.class));
+            }
+        });
 
     }
 
@@ -142,20 +149,66 @@ public class MyAccount extends AppCompatActivity {
         mDatabase.child("users").child(user_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String sname=dataSnapshot.child("name").getValue().toString();
-                String smobilen=dataSnapshot.child("mobilenumber").getValue().toString();
-                String semail=dataSnapshot.child("email").getValue().toString();
-                String defaultname=dataSnapshot.child("DefaultAddress").child("name").getValue().toString();
-                String defaultadd=dataSnapshot.child("DefaultAddress").child("address").getValue().toString();
 
-                String finaladdress=defaultname+"\n"+defaultadd;
+                try {
+                    String accsts=dataSnapshot.child("account_type").getValue().toString().trim();
 
-                name.setText(sname);
-                mobilenumber.setText("+91 "+smobilen);
-                email.setText(semail);
-                tv_default__address.setText(finaladdress);
+                    if (accsts.equals("business")){
+                        tv_business_account.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        tv_business_account.setText("Not Applicable");
+                        tv_business_account.setTextColor(Color.RED);
+                        tv_business_account.setClickable(false);
+                        tv_business_account.setVisibility(View.VISIBLE);
+                    }
 
-                // Todo : Account type need to be added
+
+                }catch (Exception e){
+
+                }
+
+                // for User profile
+                try {
+                    String sname=dataSnapshot.child("name").getValue().toString();
+                    String smobilen=dataSnapshot.child("mobilenumber").getValue().toString();
+
+                    name.setText(sname);
+                    mobilenumber.setText("+91 "+smobilen);
+
+
+
+                }catch (Exception e){
+                    name.setText("Update user details");
+                    mobilenumber.setText("+91 "+"Not Found");
+                }
+
+                // for email
+
+                try {
+                    String semail=dataSnapshot.child("email").getValue().toString();
+                    email.setText(semail);
+
+                }catch (Exception e){
+
+                    email.setText("Not Found");
+                }
+
+
+                // for address
+
+                try {
+                    String defaultname=dataSnapshot.child("DefaultAddress").child("name").getValue().toString();
+                    String defaultadd=dataSnapshot.child("DefaultAddress").child("address").getValue().toString();
+                    String finaladdress=defaultname+"\n"+defaultadd;
+                    tv_default__address.setText(finaladdress);
+
+
+                }catch (Exception e){
+                    tv_default__address.setText("Please Update Address");
+                }
+
+
             }
 
             @Override
@@ -168,6 +221,7 @@ public class MyAccount extends AppCompatActivity {
 
     private void sendToLogin() {
         mAuth.signOut();
+        finishAffinity();
         Intent loginIntent = new Intent(getApplicationContext(),login.class);
         startActivity(loginIntent);
         finish();

@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mAuth.signOut();
                 return true;
             case R.id.action_notification:
-                Toast.makeText(getApplicationContext(),"NO notification",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"No notification",Toast.LENGTH_LONG).show();
                 return true;
 
             case  R.id.action_my_account:

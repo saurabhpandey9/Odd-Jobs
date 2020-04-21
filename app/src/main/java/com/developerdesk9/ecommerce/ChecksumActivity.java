@@ -75,6 +75,7 @@ public class ChecksumActivity extends AppCompatActivity {
             user_id = currentUser.getUid();
         } else {
 
+            textView.setText("Fetching Details");
 
             mDatabase.child("users").child(user_id).child("DefaultAddress").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -85,6 +86,10 @@ public class ChecksumActivity extends AppCompatActivity {
                         recipient_address=dataSnapshot.child("address").getValue().toString();
 
                         checksumredirect(recipient_name,recipient_address);
+                    }
+                    else {
+                        textView.setText("Address Not Found !\nPlease Update default address");
+                        textView.setTextColor(Color.RED);
                     }
 
                 }
@@ -102,7 +107,7 @@ public class ChecksumActivity extends AppCompatActivity {
 
     private void checksumredirect(String rname,String raddress){
 
-        textView.setText("Fetching Details");
+
 
         if (rname.isEmpty()  && raddress.isEmpty()){
             textView.setText("Default Address Not found !\n Please ");

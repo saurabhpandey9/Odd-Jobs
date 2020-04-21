@@ -7,21 +7,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.wang.avi.AVLoadingIndicatorView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
 
-    private EditText etREmail, etRPassword;
+    private TextInputLayout etREmail, etRPassword,etRName,etRMobileno;
     private Button rbtn;
+
+    private AVLoadingIndicatorView loader;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
@@ -36,38 +42,81 @@ public class SignUp extends AppCompatActivity {
 
         etREmail = findViewById(R.id.etREmail);
         etRPassword = findViewById(R.id.etRPassword);
+        etRName=findViewById(R.id.etLname);
+        etRMobileno=findViewById(R.id.etLmobileno);
         rbtn = findViewById(R.id.rbtn);
+        loader=findViewById(R.id.loadersignup);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        currentUser = mAuth.getCurrentUser();
-
-//        if (currentUser != null) {
-//            sendToMain();
-//        }
 
 
         rbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                progressBar2.setVisibility(View.VISIBLE);
-                final String email = etREmail.getText().toString();
-                String password = etRPassword.getText().toString();
 
-                if (email.isEmpty()) {
+                final String email = etREmail.getEditText().getText().toString();
+                String password = etRPassword.getEditText().getText().toString();
+                final String name=etRName.getEditText().getText().toString().trim();
+                final String mobileno=etRMobileno.getEditText().getText().toString().trim();
+
+                if (name.isEmpty()){
+                    etRName.setError("Enter name");
+                    return;
+                }else if(mobileno.isEmpty() || mobileno.length()!=10){
+                    etRMobileno.setError("Enter valid Mobile No");
+                    return;
+                }
+
+                else if (email.isEmpty()) {
 //                    progressBar2.setVisibility(View.INVISIBLE);
                     etREmail.setError("Enter Email");
+                    return;
                 } else if (password.isEmpty()) {
 //                    progressBar2.setVisibility(View.INVISIBLE);
                     etRPassword.setError("Enter Password");
-                } else if (password.equals("password") || password.equals("12") || password.equals("pass1234")) {
-//                    progressBar2.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getApplicationContext(), "Enter strong password", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (password.isEmpty() || password.length()<6) {
+                    etRPassword.setError("Enter strong Password");
+                    return;
                 } else {
+                    loader.setVisibility(View.VISIBLE);
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+
+                                Map<String,Object> data=new HashMap<>();
+                                data.put("name",name);
+                                data.put("mobilenumber",mobileno);
+                                data.put("email",email);
+                                data.put("account_type","customer");
+                                currentUser = mAuth.getCurrentUser();
+                                user_id=currentUser.getUid();
+
+                                mDatabase.child("users").child(user_id).updateChildren(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+
+                                            Toast.makeText(getApplicationContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(getApplicationContext(),login.class));
+                                            mAuth.signOut();
+                                            finishAffinity();
+                                        }
+                                        else {
+                                            loader.setVisibility(View.INVISIBLE);
+                                            Toast.makeText(getApplicationContext(),""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            mAuth.signOut();
+                                            finishAffinity();
+
+                                        }
+                                    }
+                                });
+
+                                //Todo :: email verification left to implement
+
+
 //                                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
 //                                    @Override
 //                                    public void onComplete(@NonNull Task<Void> task) {
@@ -83,14 +132,14 @@ public class SignUp extends AppCompatActivity {
 //                                        }
 //                                    }
 //                                });
-                                Toast.makeText(getApplicationContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(),login.class));
-                                finish();
+
 
                             } else {
+                                loader.setVisibility(View.INVISIBLE);
 //                                progressBar2.setVisibility(View.INVISIBLE);
                                 String errMsg = task.getException().getMessage();
                                 Toast.makeText(getApplicationContext(), "Error: " + errMsg, Toast.LENGTH_LONG).show();
+                                mAuth.signOut();
                             }
                         }
                     });

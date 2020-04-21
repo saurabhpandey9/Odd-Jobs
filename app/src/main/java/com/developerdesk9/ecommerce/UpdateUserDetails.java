@@ -9,7 +9,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -72,8 +75,12 @@ public class UpdateUserDetails extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                update1.getEditText().setText(dataSnapshot.child("name").getValue().toString());
-                update2.getEditText().setText(dataSnapshot.child("mobilenumber").getValue().toString());
+                try {
+                    update1.getEditText().setText(dataSnapshot.child("name").getValue().toString());
+                    update2.getEditText().setText(dataSnapshot.child("mobilenumber").getValue().toString());
+                }catch (Exception e){
+
+                }
 
             }
 
@@ -107,6 +114,7 @@ public class UpdateUserDetails extends AppCompatActivity {
         else {
             if (supdate2.length()!=10){
                 update2.setError("Invalid Number");
+                return;
             }
         }
 
@@ -115,7 +123,18 @@ public class UpdateUserDetails extends AppCompatActivity {
         data.put("mobilenumber",supdate2);
 
 
-        mDatabase.child("users").child(user_id).updateChildren(data);
+        mDatabase.child("users").child(user_id).updateChildren(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+
+                    finish();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"Failed!",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     private void sendToLogin() {

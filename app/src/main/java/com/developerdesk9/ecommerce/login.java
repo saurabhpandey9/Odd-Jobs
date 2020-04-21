@@ -2,48 +2,51 @@ package com.developerdesk9.ecommerce;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.HashMap;
 
 public class login extends AppCompatActivity {
 
-    private EditText etLEmail, etLPassword;
-    private Button lbtn, lrbtn;
+    private TextInputLayout etLEmail, etLPassword;
+    private AppCompatButton lbtn, lrbtn;
 
-    private TextView signup_tv,tv_forget_password;
+    private AppCompatButton signup_tv,tv_forget_password;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
+
+    AVLoadingIndicatorView loader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etLEmail = findViewById(R.id.etLEmail);
-        etLPassword = findViewById(R.id.etLPassword);
+
+        etLEmail = findViewById(R.id.etLEmaill);
+        etLPassword = findViewById(R.id.etLPasswordl);
         lbtn = findViewById(R.id.lbtn);
         signup_tv=findViewById(R.id.signup_Ltv);
         tv_forget_password=findViewById(R.id.forget_password_Ltv);
-
+        loader=(AVLoadingIndicatorView)findViewById(R.id.loader);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
@@ -67,40 +70,39 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                progressBar.setVisibility(View.VISIBLE);
-                final String email = etLEmail.getText().toString();
-                final String password = etLPassword.getText().toString();
+                final String email = etLEmail.getEditText().getText().toString();
+                final String password = etLPassword.getEditText().getText().toString();
 
                 if (email.isEmpty()) {
-//                    progressBar.setVisibility(View.INVISIBLE);
                     etLEmail.setError("Enter Email");
+                    return;
                 } else if (password.isEmpty()) {
-//                    progressBar.setVisibility(View.INVISIBLE);
                     etLPassword.setError("Enter Password");
+                    return;
                 } else {
+                    loader.setVisibility(View.VISIBLE);
                     mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                String user_id = mAuth.getCurrentUser().getUid();
-                                mDatabase.child("users").child(user_id).child("email").setValue(email);
-                                mDatabase.child("users").child(user_id).child("password").setValue(password);
-                                String key = mDatabase.child("users").child(user_id).child("misc").child("login_details").push().getKey();
-                                HashMap<String, Object> dataMap = new HashMap<>();
-                                dataMap.put("mobile_brand", Build.BRAND);
-                                dataMap.put("mobile_manufacturer", Build.MANUFACTURER);
-                                dataMap.put("phone_os_sdk_int", Build.VERSION.SDK_INT);
-                                dataMap.put("phone_type", Build.MODEL);
-                                dataMap.put("key", key);
-                                dataMap.put("timestamp", System.currentTimeMillis());
-                                mDatabase.child("users").child(user_id).child("misc").child("login_details").child(key).updateChildren(dataMap);
+//                                String user_id = mAuth.getCurrentUser().getUid();
 
-//                                sendToSplash();
-                                sendToMain();
-
+//                                String key = mDatabase.child("users").child(user_id).child("misc").child("login_details").push().getKey();
+//                                HashMap<String, Object> dataMap = new HashMap<>();
+//                                dataMap.put("mobile_brand", Build.BRAND);
+//                                dataMap.put("mobile_manufacturer", Build.MANUFACTURER);
+//                                dataMap.put("phone_os_sdk_int", Build.VERSION.SDK_INT);
+//                                dataMap.put("phone_type", Build.MODEL);
+//                                dataMap.put("key", key);
+//                                dataMap.put("timestamp", System.currentTimeMillis());
+//                                mDatabase.child("users").child(user_id).child("misc").child("login_details").child(key).updateChildren(dataMap);
+//
+                            loader.setVisibility(View.INVISIBLE);
+                            sendToMain();
                             } else {
-//                                progressBar.setVisibility(View.INVISIBLE);
                                 String errMsg = task.getException().getMessage();
                                 Toast.makeText(getApplicationContext(), "Error: " + errMsg, Toast.LENGTH_LONG).show();
+                                loader.setVisibility(View.INVISIBLE);
                             }
                         }
                     });
@@ -109,31 +111,19 @@ public class login extends AppCompatActivity {
             }
         });
 
-
         tv_forget_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent=new Intent(getApplicationContext(),ChangePasswordActivity.class);
-                intent.putExtra("title","Forget Password");
+                intent.putExtra("title","Forget Password"); // Its use to set title
                 startActivity(intent);
             }
         });
-
-
-
-
     }
-
-
-
-
-
-
 
     private void sendToMain() {
         Intent registerIntent = new Intent(login.this, MainActivity.class);
         startActivity(registerIntent);
-        finish();
+        finishAffinity();
     }
 }
