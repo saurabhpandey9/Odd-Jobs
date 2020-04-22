@@ -287,6 +287,15 @@ public class AddNewProductActivity extends AppCompatActivity {
 
     private void uploadDetails() {
         if(filePath != null) {
+
+            // Todo :: reducing image size
+
+
+
+
+
+            //Todo :: reducing image size ends here
+
 //            pd.show();
             final Long ts_long = System.currentTimeMillis()/1000;
             final String ts = ts_long.toString();

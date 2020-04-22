@@ -31,8 +31,9 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/my_account_profile_pic"
                     android:layout_marginTop="10sp"
-                    android:src="@drawable/user_icon"
+                    android:src="@mipmap/user_icon"
                     android:layout_gravity="center"
                     android:layout_width="150dp"
                     android:layout_height="150dp"/>

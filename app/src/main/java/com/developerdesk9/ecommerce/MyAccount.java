@@ -34,6 +34,7 @@ public class MyAccount extends AppCompatActivity {
     private TextView tv_business_account;
     private TextView tv_changepassword;
     private ImageView IV_edit_info;
+    private ImageView profilepic;
 
     private DatabaseReference mDatabase;
     private FirebaseUser currentUser;
@@ -70,6 +71,9 @@ public class MyAccount extends AppCompatActivity {
         tv_business_account=findViewById(R.id.tv_myaccount_business_account);
         tv_changepassword=findViewById(R.id.tv_myaccount_change_password);
         IV_edit_info=findViewById(R.id.IV_myaccount_edit);
+        profilepic=findViewById(R.id.my_account_profile_pic);
+
+
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();

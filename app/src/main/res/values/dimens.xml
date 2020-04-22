@@ -27,7 +27,7 @@
     <dimen name="ic_add_cart_width">25dp</dimen>
     <dimen name="selected_product_count">14sp</dimen>
     <dimen name="list_product_name">14sp</dimen>
-    <dimen name="activity_margin_half">8dp</dimen>
+    <dimen name="activity_margin_half">5dp</dimen>
     <dimen name="cart_info_data">16sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="height_separator">1dp</dimen>

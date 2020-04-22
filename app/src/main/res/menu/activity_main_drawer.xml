@@ -35,9 +35,9 @@
             android:title="Sports" />
         <item
             android:id="@+id/nav_books"
-            android:icon="@drawable/ic_book"
+            android:icon="@drawable/ic_book1"
             android:title="Books" />
-        
+
     </group>
 
 
@@ -74,8 +74,10 @@
 
         <item
             android:id="@+id/nav_about_developer"
-            android:icon="@drawable/ic_about_us"
+            android:icon="@drawable/ic_developer"
             android:title="About developer" />
 
     </group>
+
+
 </menu>
