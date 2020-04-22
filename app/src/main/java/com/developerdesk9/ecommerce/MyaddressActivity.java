@@ -32,9 +32,6 @@ public class MyaddressActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TextView addnewadd_tv;
-
-
-
     private DatabaseReference mDatabase;
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
@@ -80,10 +77,10 @@ public class MyaddressActivity extends AppCompatActivity {
 
 
         //Todo :: User authentication need to implement
-//
-//        if ((currentUser==null)){
-//
-//        }
+
+        if ((currentUser==null)){
+        sendToLogin();
+        }
 
 
         addnewadd_tv.setOnClickListener(new View.OnClickListener() {
@@ -139,5 +136,13 @@ public class MyaddressActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void sendToLogin() {
+        mAuth.signOut();
+        finishAffinity();
+        Intent loginIntent = new Intent(getApplicationContext(),login.class);
+        startActivity(loginIntent);
+        finish();
     }
 }

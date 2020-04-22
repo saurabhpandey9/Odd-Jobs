@@ -142,24 +142,29 @@ public class AddNewProductActivity extends AppCompatActivity {
             user_id = mAuth.getCurrentUser().getUid();
 
 
-            mDatabase.child("users").child(user_id).child("account_type").addListenerForSingleValueEvent(new ValueEventListener() {
+            mDatabase.child("BusinessAccounts").child(user_id).child("isapproved").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                     try {
                         String sts=dataSnapshot.getValue().toString().toLowerCase().trim();
 
-                        if (sts=="customer"){
+                        if (sts.equals("no")){
                             mAuth.signOut();
                             sendToLogin();
                             finishAffinity();
                         }
-                        else {
+                        else if(sts.equals("yes")) {
                             llr.setVisibility(View.VISIBLE);
-
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"Please Contact Customer Care",Toast.LENGTH_LONG).show();
+                            mAuth.signOut();
+                            sendToLogin();
+                            finishAffinity();
                         }
                     }catch (Exception e){
-                        Toast.makeText(getApplicationContext(),"Unauthorised!!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Please Contact Customer Care",Toast.LENGTH_LONG).show();
                         mAuth.signOut();
                         sendToLogin();
                         finishAffinity();
@@ -327,7 +332,6 @@ public class AddNewProductActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Uri downloadUri = task.getResult();
                                     String mUri = downloadUri.toString();
-                                    Toast.makeText(getApplicationContext(), mUri, Toast.LENGTH_LONG).show();
                                     final String product_key = mDatabase.child("products").child(item).push().getKey();
                                     final HashMap<String, Object> dataMap = new HashMap<>();
                                     dataMap.put("product_image", mUri);

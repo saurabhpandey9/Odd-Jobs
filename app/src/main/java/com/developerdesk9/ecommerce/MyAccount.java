@@ -40,6 +40,7 @@ public class MyAccount extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private String user_id=null;
+    private String businessflag=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,7 @@ public class MyAccount extends AppCompatActivity {
 
 
         Accountinfo();
+        businesscheck();
 
         tv_prime_membership.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,13 +100,6 @@ public class MyAccount extends AppCompatActivity {
             }
         });
 
-        IV_edit_info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAccountinfo();
-                Toast.makeText(getApplicationContext(),"Edit Please",Toast.LENGTH_LONG).show();
-            }
-        });
         tv_alladdress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,16 +128,61 @@ public class MyAccount extends AppCompatActivity {
         tv_business_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Welcome to Business Area",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getApplicationContext(),AddNewProductActivity.class));
+                business_page_redirect();
+
             }
         });
 
     }
 
-    private void updateAccountinfo(){
 
+    private void businesscheck(){
+        mDatabase.child("BusinessAccounts").child(user_id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                try {
+                    String accsts=dataSnapshot.child("isapproved").getValue().toString().toLowerCase().trim();
+
+                    businessflag=accsts;
+
+                    if (accsts.equals("yes")){
+                        tv_business_account.setText("MANAGE YOUR ACCOUNT");
+                        tv_business_account.setVisibility(View.VISIBLE);
+                        tv_business_account.setClickable(true);
+                    }
+                    else if (accsts.equals("no")){
+                        tv_business_account.setText("Your Account is yet to Approve\nPlease Wait");
+                        tv_business_account.setTextColor(Color.GREEN);
+                        tv_business_account.setClickable(false);
+                        tv_business_account.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        tv_business_account.setText("Apply for Business Account");
+                        tv_business_account.setTextColor(Color.GREEN);
+                        tv_business_account.setClickable(true);
+                        tv_business_account.setVisibility(View.VISIBLE);
+                    }
+
+
+                }catch (Exception e){
+                    tv_business_account.setText("Apply for Business Account");
+                    tv_business_account.setTextColor(Color.GRAY);
+                    tv_business_account.setClickable(true);
+                    tv_business_account.setVisibility(View.VISIBLE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
+
+
+
 
     private void Accountinfo(){
 
@@ -150,23 +190,7 @@ public class MyAccount extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                try {
-                    String accsts=dataSnapshot.child("account_type").getValue().toString().trim();
 
-                    if (accsts.equals("business")){
-                        tv_business_account.setVisibility(View.VISIBLE);
-                    }
-                    else {
-                        tv_business_account.setText("Not Applicable");
-                        tv_business_account.setTextColor(Color.RED);
-                        tv_business_account.setClickable(false);
-                        tv_business_account.setVisibility(View.VISIBLE);
-                    }
-
-
-                }catch (Exception e){
-
-                }
 
                 // for User profile
                 try {
@@ -216,6 +240,29 @@ public class MyAccount extends AppCompatActivity {
 
             }
         });
+
+    }
+
+
+    private void business_page_redirect(){
+
+
+
+        if (businessflag.equals("yes")){
+            Toast.makeText(getApplicationContext(),"Welcome to Business Area",Toast.LENGTH_LONG).show();
+            startActivity(new Intent(getApplicationContext(),AddNewProductActivity.class));
+        }
+        else if (businessflag.equals("no")){
+            Toast.makeText(getApplicationContext(),"Your Account is yet to Approve\nPlease Wait",Toast.LENGTH_LONG).show();
+
+        }
+        else {
+            tv_business_account.setText("Apply for Business Account");
+            tv_business_account.setTextColor(Color.GRAY);
+            tv_business_account.setClickable(true);
+            tv_business_account.setVisibility(View.VISIBLE);
+            startActivity(new Intent(MyAccount.this,ApplyForBusinessAccActivity.class));
+        }
 
     }
 

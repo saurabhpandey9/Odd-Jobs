@@ -3,13 +3,13 @@ package com.developerdesk9.ecommerce;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -27,13 +27,14 @@ public class login extends AppCompatActivity {
     private TextInputLayout etLEmail, etLPassword;
     private AppCompatButton lbtn, lrbtn;
 
-    private AppCompatButton signup_tv,tv_forget_password;
+    private AppCompatButton signup_tv, tv_forget_password;
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
     AVLoadingIndicatorView loader;
+    private LinearLayout loginwindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +45,10 @@ public class login extends AppCompatActivity {
         etLEmail = findViewById(R.id.etLEmaill);
         etLPassword = findViewById(R.id.etLPasswordl);
         lbtn = findViewById(R.id.lbtn);
-        signup_tv=findViewById(R.id.signup_Ltv);
-        tv_forget_password=findViewById(R.id.forget_password_Ltv);
-        loader=(AVLoadingIndicatorView)findViewById(R.id.loader);
+        signup_tv = findViewById(R.id.signup_Ltv);
+        tv_forget_password = findViewById(R.id.forget_password_Ltv);
+        loader = (AVLoadingIndicatorView) findViewById(R.id.loader);
+        loginwindow=findViewById(R.id.login_window);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
@@ -59,17 +61,16 @@ public class login extends AppCompatActivity {
         signup_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),SignUp.class));
+                startActivity(new Intent(getApplicationContext(), SignUp.class));
                 finish();
             }
         });
 
 
-
         lbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                progressBar.setVisibility(View.VISIBLE);
+
                 final String email = etLEmail.getEditText().getText().toString();
                 final String password = etLPassword.getEditText().getText().toString();
 
@@ -81,28 +82,37 @@ public class login extends AppCompatActivity {
                     return;
                 } else {
                     loader.setVisibility(View.VISIBLE);
+                    loader.setClickable(false);
                     mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-//                                String user_id = mAuth.getCurrentUser().getUid();
 
-//                                String key = mDatabase.child("users").child(user_id).child("misc").child("login_details").push().getKey();
-//                                HashMap<String, Object> dataMap = new HashMap<>();
-//                                dataMap.put("mobile_brand", Build.BRAND);
-//                                dataMap.put("mobile_manufacturer", Build.MANUFACTURER);
-//                                dataMap.put("phone_os_sdk_int", Build.VERSION.SDK_INT);
-//                                dataMap.put("phone_type", Build.MODEL);
-//                                dataMap.put("key", key);
-//                                dataMap.put("timestamp", System.currentTimeMillis());
-//                                mDatabase.child("users").child(user_id).child("misc").child("login_details").child(key).updateChildren(dataMap);
+
+                                //Device Info
+                                String device_unique_id = Settings.Secure.getString(getApplication().getContentResolver(), Settings.Secure.ANDROID_ID);
+
+                                String user_id = mAuth.getCurrentUser().getUid();
+                                String key = mDatabase.child("users").child(user_id).child("misc").child("login_details").push().getKey();
+                                HashMap<String, Object> dataMap = new HashMap<>();
+                                dataMap.put("mobile_brand", Build.BRAND);
+                                dataMap.put("mobile_manufacturer", Build.MANUFACTURER);
+                                dataMap.put("phone_os_sdk_int", Build.VERSION.SDK_INT);
+                                dataMap.put("phone_type", Build.MODEL);
+                                dataMap.put("key", key);
+                                dataMap.put("device_id",device_unique_id);
+                                dataMap.put("timestamp", System.currentTimeMillis());
+                                mDatabase.child("users").child(user_id).child("login_details").child(key).updateChildren(dataMap);
 //
                             loader.setVisibility(View.INVISIBLE);
                             sendToMain();
+
+
                             } else {
                                 String errMsg = task.getException().getMessage();
                                 Toast.makeText(getApplicationContext(), "Error: " + errMsg, Toast.LENGTH_LONG).show();
                                 loader.setVisibility(View.INVISIBLE);
+                                loginwindow.setClickable(true);
                             }
                         }
                     });

@@ -266,13 +266,14 @@
                         android:background="#C5C1C1" />
 
                     <TextView
+                        android:clickable="false"
                         android:visibility="invisible"
                         android:id="@+id/tv_myaccount_business_account"
                         android:textAllCaps="true"
                         android:gravity="right"
                         android:textSize="@dimen/Heading_cardview"
                         android:textColor="@color/Text_color_link_cardview"
-                        android:text="Manage your Account"
+                        android:text=""
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
