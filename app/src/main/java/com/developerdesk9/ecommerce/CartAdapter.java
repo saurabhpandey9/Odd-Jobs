@@ -61,7 +61,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         viewHolder.product_price.setText("₹" + cart.getProduct_price());
         viewHolder.seller_name.setText("by " + cart.getSeller_name());
         viewHolder.product_description.setText(cart.getProduct_description());
-        Picasso.get().load(cart.getProduct_image()).into(viewHolder.imageView10, new Callback() {
+        Picasso.get().load(cart.getProduct_image()).fit().into(viewHolder.imageView10, new Callback() {
             @Override
             public void onSuccess() {
                 viewHolder.progressBar3.setVisibility(View.INVISIBLE);

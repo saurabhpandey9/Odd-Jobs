@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Individual_product_view_Activity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_individual_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/toolbar"
+        android:elevation="1dp"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_marginTop="20dp"
+        android:id="@+id/scrollview_individual"
+        android:layout_width="match_parent"
+        android:layout_height="620dp"
+        android:layout_below="@+id/toolbar_individual_product"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="55dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:padding="5dp"
+                    android:id="@+id/productIV"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="10dp"
+                    app:srcCompat="@drawable/add_product_icon" />
+
+
+            </androidx.cardview.widget.CardView>
+
+
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/tvPName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif"
+                android:layout_gravity="left"
+                android:text="TextView"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold" />
+
+            <TextView
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
+                android:layout_gravity="left"
+                android:id="@+id/tvPPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="TextView"
+                android:textColor="@color/toolbar"
+                android:textSize="25sp" />
+
+            <TextView
+                android:fontFamily="sans-serif-condensed-light"
+                android:layout_gravity="left"
+                android:id="@+id/tvSName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Retailer Name"
+                android:textColor="#388e3c"
+                android:textSize="16sp" />
+
+
+
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ADABAB" />
+
+            <TextView android:fontFamily="sans-serif-medium"
+                android:layout_gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="All Details :"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:fontFamily="sans-serif-condensed-light"
+                android:layout_marginTop="5dp"
+                android:id="@+id/tvPDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="TextView"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center|bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity=""
+            android:layout_weight="1"
+            android:background="@drawable/button_color_5"
+            android:text="Buy Now"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_color_6"
+            android:text="Add to Cart"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

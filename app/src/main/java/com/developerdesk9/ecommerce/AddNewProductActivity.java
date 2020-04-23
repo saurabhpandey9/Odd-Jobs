@@ -92,6 +92,7 @@ public class AddNewProductActivity extends AppCompatActivity {
     private ProgressDialog progressDoalog;
 
     private String imageURLstring=null;
+    private int imagecompressfactor=10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -288,7 +289,7 @@ public class AddNewProductActivity extends AppCompatActivity {
             filePath = data.getData();
 
             try {
-                Picasso.get().load(filePath).into(imageView5);
+                Picasso.get().load(filePath).fit().into(imageView5);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -304,7 +305,7 @@ public class AddNewProductActivity extends AppCompatActivity {
             try {
                 Bitmap bmp = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath); // getting image from gallery
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bmp.compress(Bitmap.CompressFormat.JPEG,10, baos);
+                bmp.compress(Bitmap.CompressFormat.JPEG,imagecompressfactor, baos);
                 data = baos.toByteArray();
             }catch (Exception e){
 

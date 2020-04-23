@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,7 +57,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         final Products products = productsList.get(i);
         //viewHolder.progressBar3.setVisibility(View.VISIBLE);
 
-        Picasso.get().load(products.getProduct_image()).into(viewHolder.productIV, new Callback() {
+        Picasso.get().load(products.getProduct_image()).fit().into(viewHolder.productIV, new Callback() {
             @Override
             public void onSuccess() {
                 //viewHolder.progressBar3.setVisibility(View.INVISIBLE);
@@ -75,19 +76,17 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         user_id = currentUser.getUid();
         viewHolder.tvProductName.setText(products.getProduct_name());
         viewHolder.tvProductPrice.setText("₹" + products.getProduct_price());
-        viewHolder.tvProductDesc.setText(products.getProduct_description());
         viewHolder.tvSellerName.setText("by " + products.getCompany_name());
-
-//        viewHolder.productcv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent productIntent = new Intent(mContext, ProductActivity.class);
-//                productIntent.putExtra("product_key", products.getProduct_key());
-//                productIntent.putExtra("product_category", products.getProduct_category());
-//                productIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                mContext.startActivity(productIntent);
-//            }
-//        });
+        viewHolder.productcv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent productIntent = new Intent(mContext, Individual_product_view_Activity.class);
+                productIntent.putExtra("product_key", products.getProduct_key());
+                productIntent.putExtra("product_category", products.getProduct_category());
+                productIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(productIntent);
+            }
+        });
 
         viewHolder.buy_now_btn_pl.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -120,7 +119,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Vibrator vibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
-                        vibrator.vibrate(50);
+                        vibrator.vibrate(70);
                         Toast.makeText(mContext, "Product added successfully to cart", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -136,8 +135,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView productIV;
-        private TextView tvProductName, tvProductPrice, tvProductDesc, tvSellerName;
-        private CardView productcv;
+        private TextView tvProductName, tvProductPrice, tvSellerName;
+        private LinearLayout productcv;
         private ProgressBar progressBar3;
         private Button buy_now_btn_pl, button15;
 
@@ -147,12 +146,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             productIV = itemView.findViewById(R.id.productIV);
             tvProductName = itemView.findViewById(R.id.tvProductName);
             tvProductPrice = itemView.findViewById(R.id.tvProductPrice);
-            tvProductDesc = itemView.findViewById(R.id.tvProductDesc);
             tvSellerName = itemView.findViewById(R.id.tvSellerName);
-            productcv = itemView.findViewById(R.id.productcv);
+            productcv = itemView.findViewById(R.id.productcv1);
             buy_now_btn_pl = itemView.findViewById(R.id.btn_buynow_productlist);
             button15 = itemView.findViewById(R.id.button15);
-            //progressBar3 = itemView.findViewById(R.id.progressBar3);
         }
     }
 }

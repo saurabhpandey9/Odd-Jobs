@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +15,8 @@
         android:roundIcon="@drawable/ic_shopping_cart_"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ApplyForBusinessAccActivity"></activity>
+        <activity android:name=".Individual_product_view_Activity"></activity>
+        <activity android:name=".ApplyForBusinessAccActivity" />
         <activity android:name=".AddNewProductActivity" />
         <activity android:name=".About_developereAcitvity" />
         <activity android:name=".ChecksumActivity" />
@@ -33,17 +34,15 @@
             android:label="Odd Jobs"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".SplashScreen"
             android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".SignUp"
             android:theme="@style/FullScreen" />

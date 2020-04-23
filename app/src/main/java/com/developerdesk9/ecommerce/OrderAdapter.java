@@ -35,7 +35,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Order order = orderList.get(i);
-        Picasso.get().load(order.getProduct_image()).into(viewHolder.imageView10);
+        Picasso.get().load(order.getProduct_image()).fit().into(viewHolder.imageView10);
         viewHolder.product_name.setText(order.getProduct_name());
         viewHolder.product_price.setText("₹" + order.getProduct_price());
         viewHolder.seller_name.setText("by " + order.getSeller_name());

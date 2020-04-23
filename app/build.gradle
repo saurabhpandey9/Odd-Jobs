@@ -32,13 +32,13 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha01'
     implementation 'com.android.support:cardview-v7:29.0.0'
+    implementation 'com.android.support:design:29.1.1'
 
     implementation 'com.android.support:gridlayout-v7:29.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'com.github.tntkhang:gmail-sender-library:1.2.0'
     // implementation 'com.github.jrvansuita:GaussianBlur:v1.0.3'
-
 
 
     //progress bar

@@ -11,7 +11,7 @@
         android:title="Logout"
         android:id="@+id/action_logout_tn"
         android:orderInCategory="100"
-       android:icon="@drawable/ic_logout_action"
+       android:icon="@drawable/ic_log_out_mainpage"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_settings"
