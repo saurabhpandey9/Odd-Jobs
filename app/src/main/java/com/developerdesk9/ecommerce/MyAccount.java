@@ -77,125 +77,88 @@ public class MyAccount extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        user_id=currentUser.getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         if (currentUser == null) {
             sendToLogin();
         }
 
-        user_id = currentUser.getUid();
+        else {
 
 
-        Accountinfo();
-        businesscheck();
-
-        tv_prime_membership.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tv_prime_membership.setText("Your are Not Prime Member");
-                tv_prime_membership.setTextColor(Color.RED);
-            }
-        });
-
-        tv_myordere.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),OrderActivity.class));
-            }
-        });
-
-        tv_alladdress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MyaddressActivity.class));
-            }
-        });
-
-        tv_changepassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent=new Intent(getApplicationContext(),ChangePasswordActivity.class);
-
-                intent.putExtra("title","Change Password");
-                startActivity(intent);
-            }
-        });
-
-        IV_edit_info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),UpdateUserDetails.class));
-            }
-        });
-
-        tv_business_account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                business_page_redirect();
-
-            }
-        });
-
-    }
+            user_id = currentUser.getUid();
 
 
-    private void businesscheck(){
-        mDatabase.child("BusinessAccounts").child(user_id).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                try {
-                    String accsts=dataSnapshot.child("isapproved").getValue().toString().toLowerCase().trim();
-
-                    businessflag=accsts;
-
-                    if (accsts.equals("yes")){
-                        tv_business_account.setText("MANAGE YOUR ACCOUNT");
-                        tv_business_account.setVisibility(View.VISIBLE);
-                        tv_business_account.setClickable(true);
-                    }
-                    else if (accsts.equals("no")){
-                        tv_business_account.setText("Your Account is yet to Approve\nPlease Wait");
-                        tv_business_account.setTextColor(Color.GREEN);
-                        tv_business_account.setClickable(false);
-                        tv_business_account.setVisibility(View.VISIBLE);
-                    }
-                    else {
-                        tv_business_account.setText("Apply for Business Account");
-                        tv_business_account.setTextColor(Color.GREEN);
-                        tv_business_account.setClickable(true);
-                        tv_business_account.setVisibility(View.VISIBLE);
-                    }
+            Accountinfo();
+            businesscheck();
 
 
-                }catch (Exception e){
-                    tv_business_account.setText("Apply for Business Account");
-                    tv_business_account.setTextColor(Color.GRAY);
-                    tv_business_account.setClickable(true);
-                    tv_business_account.setVisibility(View.VISIBLE);
+            tv_prime_membership.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tv_prime_membership.setText("Your are Not Prime Member");
+                    tv_prime_membership.setTextColor(Color.RED);
                 }
+            });
 
-            }
+            tv_myordere.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getApplicationContext(),OrderActivity.class));
+                }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            tv_alladdress.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getApplicationContext(),MyaddressActivity.class));
+                }
+            });
 
-            }
-        });
+            tv_changepassword.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent=new Intent(getApplicationContext(),ChangePasswordActivity.class);
+
+                    intent.putExtra("title","Change Password");
+                    startActivity(intent);
+                }
+            });
+
+            IV_edit_info.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(MyAccount.this,UpdateUserDetails.class);
+
+//                    intent.
+
+                    startActivity(new Intent(getApplicationContext(),UpdateUserDetails.class));
+                }
+            });
+
+            tv_business_account.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    business_page_redirect();
+
+                }
+            });
+
+
+        }
+
+
+
     }
-
-
 
 
     private void Accountinfo(){
 
-        mDatabase.child("users").child(user_id).addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("users").child(user_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-
                 // for User profile
                 try {
                     String sname=dataSnapshot.child("name").getValue().toString();
@@ -236,7 +199,6 @@ public class MyAccount extends AppCompatActivity {
                     tv_default__address.setText("Please Update Address");
                 }
 
-
             }
 
             @Override
@@ -248,11 +210,63 @@ public class MyAccount extends AppCompatActivity {
     }
 
 
+
+    private void businesscheck(){
+        mDatabase.child("BusinessAccounts").child(user_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    String accsts=dataSnapshot.child("isapproved").getValue().toString().toLowerCase().trim();
+
+                    businessflag=accsts;
+
+                    if (accsts.equals("yes")){
+                        tv_business_account.setText("MANAGE YOUR ACCOUNT");
+                        tv_business_account.setVisibility(View.VISIBLE);
+                        tv_business_account.setClickable(true);
+                    }
+                    else if (accsts.equals("no")){
+                        tv_business_account.setText("Your Account is yet to Approve\nPlease Wait");
+                        tv_business_account.setTextColor(Color.GREEN);
+                        tv_business_account.setClickable(false);
+                        tv_business_account.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        tv_business_account.setText("Apply for Business Account");
+                        tv_business_account.setTextColor(getApplication().getResources().getColor(R.color.Orange));
+                        tv_business_account.setClickable(true);
+                        tv_business_account.setVisibility(View.VISIBLE);
+                    }
+
+
+                }catch (Exception e){
+                    tv_business_account.setText("Apply for Business Account");
+                    tv_business_account.setTextColor(getApplication().getResources().getColor(R.color.Orange));
+                    tv_business_account.setClickable(true);
+                    tv_business_account.setVisibility(View.VISIBLE);
+                    businessflag="Apply for business Account";
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
     private void business_page_redirect(){
 
 
-
-        if (businessflag.equals("yes")){
+        if (businessflag.isEmpty()){
+            tv_business_account.setText("Apply for Business Account");
+            tv_business_account.setTextColor(this.getResources().getColor(R.color.Orange));
+            tv_business_account.setClickable(true);
+            tv_business_account.setVisibility(View.VISIBLE);
+            startActivity(new Intent(MyAccount.this,ApplyForBusinessAccActivity.class));
+        }
+        else if (businessflag.equals("yes")){
             Toast.makeText(getApplicationContext(),"Welcome to Business Area",Toast.LENGTH_LONG).show();
             startActivity(new Intent(getApplicationContext(),AddNewProductActivity.class));
         }
@@ -262,7 +276,7 @@ public class MyAccount extends AppCompatActivity {
         }
         else {
             tv_business_account.setText("Apply for Business Account");
-            tv_business_account.setTextColor(Color.GRAY);
+            tv_business_account.setTextColor(this.getResources().getColor(R.color.Orange));
             tv_business_account.setClickable(true);
             tv_business_account.setVisibility(View.VISIBLE);
             startActivity(new Intent(MyAccount.this,ApplyForBusinessAccActivity.class));

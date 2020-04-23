@@ -90,7 +90,6 @@ public class SignUp extends AppCompatActivity {
                                 data.put("name",name);
                                 data.put("mobilenumber",mobileno);
                                 data.put("email",email);
-                                data.put("account_type","customer");
                                 currentUser = mAuth.getCurrentUser();
                                 user_id=currentUser.getUid();
 
@@ -100,8 +99,9 @@ public class SignUp extends AppCompatActivity {
                                         if(task.isSuccessful()){
 
                                             Toast.makeText(getApplicationContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(getApplicationContext(),login.class));
                                             mAuth.signOut();
+                                            startActivity(new Intent(SignUp.this,login.class));
+                                            Toast.makeText(getApplicationContext(), "Please verify your Account before login", Toast.LENGTH_SHORT).show();
                                             finishAffinity();
                                         }
                                         else {

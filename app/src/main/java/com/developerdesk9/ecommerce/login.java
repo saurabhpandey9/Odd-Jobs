@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -102,8 +103,9 @@ public class login extends AppCompatActivity {
                                 dataMap.put("key", key);
                                 dataMap.put("device_id",device_unique_id);
                                 dataMap.put("timestamp", System.currentTimeMillis());
-//                                mDatabase.child("users").child(user_id).child("login_details").child(key).updateChildren(dataMap);
-//
+                                mDatabase.child("users").child(user_id).child("login_details").child(key).updateChildren(dataMap);
+
+
                             loader.setVisibility(View.INVISIBLE);
                             sendToMain();
 

@@ -45,7 +45,7 @@
                     android:layout_marginTop="20sp"
                     android:layout_marginBottom="15sp"
                     android:layout_gravity="center"
-                    android:text="Saurabh Pandey"
+                    android:text="Name"
                     android:fontFamily="sans-serif-medium"
                     android:textColor="@color/my_account_color"
                     android:layout_width="wrap_content"

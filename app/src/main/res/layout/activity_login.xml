@@ -66,7 +66,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:layout_marginBottom="@dimen/activity_margin_half"
                         android:background="@null"
                         android:hint="Email"
@@ -80,6 +80,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/etLPasswordl"
                     style="@style/TextLabel"
+                    app:passwordToggleEnabled="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_margin"
@@ -88,7 +89,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:layout_marginBottom="@dimen/activity_margin_half"
                         android:background="@null"
                         android:hint="Password"
