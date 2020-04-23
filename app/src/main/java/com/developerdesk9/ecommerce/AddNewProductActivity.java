@@ -6,11 +6,19 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,6 +47,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -66,6 +79,7 @@ public class AddNewProductActivity extends AppCompatActivity {
 
     private String company_name;
     private String company_key;
+    private String product_key;
     private String product_name;
     private String product_price;
     private String product_description;
@@ -76,6 +90,8 @@ public class AddNewProductActivity extends AppCompatActivity {
     private Spinner spinner;
 
     private ProgressDialog progressDoalog;
+
+    private String imageURLstring=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,7 +208,6 @@ public class AddNewProductActivity extends AppCompatActivity {
             addbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Toast.makeText(getApplicationContext(),"btn",Toast.LENGTH_LONG).show();
                     addproduct();
                 }
             });
@@ -231,7 +246,7 @@ public class AddNewProductActivity extends AppCompatActivity {
             etAddProductDescription.setError("Enter product description");
         } else  if (item.equals("Select Product Category")) {
             Toast.makeText(getApplicationContext(), "Please select a category", Toast.LENGTH_LONG).show();
-        } else {
+        }else  {
 
             progressDoalog.show();
 
@@ -273,10 +288,6 @@ public class AddNewProductActivity extends AppCompatActivity {
             filePath = data.getData();
 
             try {
-                //getting image from gallery
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-
-                //Setting image to ImageView
                 Picasso.get().load(filePath).into(imageView5);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -284,34 +295,38 @@ public class AddNewProductActivity extends AppCompatActivity {
         }
     }
 
-
     private void uploadDetails() {
         if(filePath != null) {
 
-            // Todo :: reducing image size
+            byte [] data=null;
 
+            // image compression
+            try {
+                Bitmap bmp = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath); // getting image from gallery
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.JPEG,10, baos);
+                data = baos.toByteArray();
+            }catch (Exception e){
 
+            }
 
+            //image compression done
 
+            product_key = mDatabase.child("products").child(item).push().getKey();
 
-            //Todo :: reducing image size ends here
-
-//            pd.show();
             final Long ts_long = System.currentTimeMillis()/1000;
             final String ts = ts_long.toString();
-            final StorageReference childRef = storageReference.child("product_images/" + ts + ".jpg");
+            final StorageReference childRef = storageReference.child("product_images/" + product_key+ ".jpg");
+            final UploadTask uploadTask = childRef.putBytes(data);
 
-            //uploading the image
-            final UploadTask uploadTask = childRef.putFile(filePath);
-
-            //Todo :: Progress bar 0 to 100 %
+            // Progress dialog box implemented
             uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
 
                     double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                    int currentprogress = (int) progress;
-                    progressDoalog.setProgress(currentprogress);
+                    int current_progress = (int) progress;
+                    progressDoalog.setProgress(current_progress);
                 }
             }).addOnPausedListener(new OnPausedListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -341,8 +356,9 @@ public class AddNewProductActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Uri downloadUri = task.getResult();
                                     String mUri = downloadUri.toString();
-                                    final String product_key = mDatabase.child("products").child(item).push().getKey();
+
                                     final HashMap<String, Object> dataMap = new HashMap<>();
+
                                     dataMap.put("product_image", mUri);
                                     dataMap.put("product_name", product_name);
                                     dataMap.put("product_price", product_price);
@@ -352,6 +368,7 @@ public class AddNewProductActivity extends AppCompatActivity {
                                     dataMap.put("product_added_time", ts_long);
                                     dataMap.put("product_category", item);
                                     dataMap.put("product_key", product_key);
+
                                     mDatabase.child("products").child(item).child(product_key).setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {

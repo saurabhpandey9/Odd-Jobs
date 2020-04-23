@@ -115,7 +115,7 @@
                 android:background="@android:color/white"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:text="Delete Product"
+                android:text="Remove Item"
                 android:textAllCaps="false"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="16sp"

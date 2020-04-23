@@ -56,12 +56,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         final Products products = productsList.get(i);
         //viewHolder.progressBar3.setVisibility(View.VISIBLE);
 
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        user_id = currentUser.getUid();
-
         Picasso.get().load(products.getProduct_image()).into(viewHolder.productIV, new Callback() {
             @Override
             public void onSuccess() {
@@ -73,6 +67,12 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
             }
         });
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        user_id = currentUser.getUid();
         viewHolder.tvProductName.setText(products.getProduct_name());
         viewHolder.tvProductPrice.setText("₹" + products.getProduct_price());
         viewHolder.tvProductDesc.setText(products.getProduct_description());

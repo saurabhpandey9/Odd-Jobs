@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext);
         recyclerview.setLayoutManager(layoutManager);
         recyclerview.setAdapter(productsAdapter);
+        recyclerview.setHasFixedSize(true);
+        recyclerview.setItemViewCacheSize(20);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
