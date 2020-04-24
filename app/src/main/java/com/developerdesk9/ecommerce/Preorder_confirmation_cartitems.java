@@ -110,38 +110,38 @@ public class Preorder_confirmation_cartitems extends AppCompatActivity {
 
 
     // Todo :: isko baad me sarkayenge;  is baad  me implement karenge in final payement gatway
-//    private void getProductShipToOrders() {
-//        mDatabase.child("cart").child(user_id).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    Map<String, Object> map = (Map<String, Object>) ds.getValue();
-//                    Object producut_name = map.get("product_name");
-//                    Object product_image = map.get("product_image");
-//                    Object seller_name = map.get("seller_name");
-//                    Object cart_key = map.get("cart_key");
-//                    Object product_description = map.get("product_description");
-//                    Object product_price = map.get("product_price");
-//
-//                    mDatabase.child("orders").child(user_id).push().setValue(map);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//        mDatabase.child("cart").child(user_id).setValue(null);
-//        Toast.makeText(getApplicationContext(), "Product purchased successfully", Toast.LENGTH_LONG).show();
-//
-//        // Todo 1. Ordered  Items me redirect karega
-//
-//        Intent orderIntent = new Intent(Preorder_confirmation_cartitems.this, OrderActivity.class);
-//        startActivity(orderIntent);
-//        finish();
-//
-//    }
+    private void getProductShipToOrders() {
+        mDatabase.child("cart").child(user_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Map<String, Object> map = (Map<String, Object>) ds.getValue();
+                    Object producut_name = map.get("product_name");
+                    Object product_image = map.get("product_image");
+                    Object seller_name = map.get("seller_name");
+                    Object cart_key = map.get("cart_key");
+                    Object product_description = map.get("product_description");
+                    Object product_price = map.get("product_price");
+
+                    mDatabase.child("orders").child(user_id).push().setValue(map);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        mDatabase.child("cart").child(user_id).setValue(null);
+        Toast.makeText(getApplicationContext(), "Product purchased successfully", Toast.LENGTH_LONG).show();
+
+        // Todo 1. Ordered  Items me redirect karega
+
+        Intent orderIntent = new Intent(Preorder_confirmation_cartitems.this, OrderActivity.class);
+        startActivity(orderIntent);
+        finish();
+
+    }
 
     private void sendToLogin() {
         Intent loginIntent = new Intent(Preorder_confirmation_cartitems.this, login.class);

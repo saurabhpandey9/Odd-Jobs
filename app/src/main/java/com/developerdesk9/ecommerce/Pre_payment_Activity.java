@@ -79,7 +79,7 @@ public class Pre_payment_Activity extends AppCompatActivity {
 
         data.put("order_id",Orderid);
         data.put("user_id",user_id);
-        data.put("order_status","failed");
+        data.put("order_status","NA");
 
 
         mDatabase.child("TransactionDetails").child(Orderid).updateChildren(data).addOnCompleteListener(new OnCompleteListener<Void>() {
