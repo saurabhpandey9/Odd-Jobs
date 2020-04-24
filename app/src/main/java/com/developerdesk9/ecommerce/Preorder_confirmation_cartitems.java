@@ -50,7 +50,7 @@ public class Preorder_confirmation_cartitems extends AppCompatActivity {
         total_product_count = bundle.get("total_product_count").toString();
 
         toolbar13 = findViewById(R.id.toolbar13);
-        toolbar13.setTitle("Order Summary");
+        toolbar13.setTitle("Order Summary 1");
         toolbar13.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar13);
         toolbar13.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
@@ -76,7 +76,7 @@ public class Preorder_confirmation_cartitems extends AppCompatActivity {
             button11.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getProductShipToOrders();
+                    redirectPrefinalPayment();
                 }
             });
 
@@ -90,38 +90,58 @@ public class Preorder_confirmation_cartitems extends AppCompatActivity {
         tvCBTPrice.setText("₹ " + total_price);
     }
 
-    private void getProductShipToOrders() {
-        mDatabase.child("cart").child(user_id).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Map<String, Object> map = (Map<String, Object>) ds.getValue();
-                    Object producut_name = map.get("product_name");
-                    Object product_image = map.get("product_image");
-                    Object seller_name = map.get("seller_name");
-                    Object cart_key = map.get("cart_key");
-                    Object product_description = map.get("product_description");
-                    Object product_price = map.get("product_price");
+    private void redirectPrefinalPayment(){
+        Intent cartBuyIntent = new Intent(Preorder_confirmation_cartitems.this, Pre_payment_Activity.class);
+        cartBuyIntent.putExtra("name", name);
+        cartBuyIntent.putExtra("address", address);
+        cartBuyIntent.putExtra("total_product_count", total_product_count);
+        cartBuyIntent.putExtra("total_price", String.valueOf(total_price));
+        cartBuyIntent.putExtra("order_typeflag", "cart");
 
-                    mDatabase.child("orders").child(user_id).push().setValue(map);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        mDatabase.child("cart").child(user_id).setValue(null);
-        Toast.makeText(getApplicationContext(), "Product purchased successfully", Toast.LENGTH_LONG).show();
-
-        // Todo 1. Ordered  Items list yet to built
-
-        Intent orderIntent = new Intent(Preorder_confirmation_cartitems.this, OrderActivity.class);
-        startActivity(orderIntent);
+        cartBuyIntent.putExtra("product_image","dummydatabycart");
+        cartBuyIntent.putExtra("product_name","dummydatabycart");
+        cartBuyIntent.putExtra("product_description","dummydatabycart");
+        cartBuyIntent.putExtra("company_name","dummydatabycart");
+        startActivity(cartBuyIntent);
         finish();
 
+
     }
+
+
+    // Todo :: isko baad me sarkayenge;  is baad  me implement karenge in final payement gatway
+//    private void getProductShipToOrders() {
+//        mDatabase.child("cart").child(user_id).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+//                    Map<String, Object> map = (Map<String, Object>) ds.getValue();
+//                    Object producut_name = map.get("product_name");
+//                    Object product_image = map.get("product_image");
+//                    Object seller_name = map.get("seller_name");
+//                    Object cart_key = map.get("cart_key");
+//                    Object product_description = map.get("product_description");
+//                    Object product_price = map.get("product_price");
+//
+//                    mDatabase.child("orders").child(user_id).push().setValue(map);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//        mDatabase.child("cart").child(user_id).setValue(null);
+//        Toast.makeText(getApplicationContext(), "Product purchased successfully", Toast.LENGTH_LONG).show();
+//
+//        // Todo 1. Ordered  Items me redirect karega
+//
+//        Intent orderIntent = new Intent(Preorder_confirmation_cartitems.this, OrderActivity.class);
+//        startActivity(orderIntent);
+//        finish();
+//
+//    }
 
     private void sendToLogin() {
         Intent loginIntent = new Intent(Preorder_confirmation_cartitems.this, login.class);

@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="Getting Payment Status"
+            android:text="Getting Order Id"
             android:textColor="@color/grey"
             android:textSize="20sp" />
     </LinearLayout>

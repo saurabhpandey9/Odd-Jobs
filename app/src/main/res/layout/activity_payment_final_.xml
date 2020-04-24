@@ -166,6 +166,7 @@
                             android:layout_height="wrap_content"/>
 
                         <TextView
+                            android:id="@+id/final_payment_item_count"
                             android:layout_alignParentRight="true"
                             android:text="1"
                             android:layout_width="wrap_content"
@@ -189,10 +190,11 @@
                             android:layout_height="wrap_content"/>
 
                         <TextView
+                            android:id="@+id/final_payment_price"
                             android:textAllCaps="true"
                             android:textColor="@android:color/black"
                             android:layout_alignParentRight="true"
-                            android:text="₹104"
+                            android:text="₹NA"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
 
@@ -250,6 +252,7 @@
                             android:layout_height="wrap_content"/>
 
                         <TextView
+                            android:id="@+id/final_payment_amount_payable"
                             android:textSize="20sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -257,7 +260,7 @@
                             android:textColor="@android:color/black"
                             android:textStyle="bold"
                             android:layout_alignParentRight="true"
-                            android:text="₹104"/>
+                            android:text="₹NA"/>
 
                     </RelativeLayout>
 
@@ -317,14 +320,13 @@
                         <RadioGroup
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/myRadioGroup"
-                            android:checkedButton="@+id/sound" >
+                            android:id="@+id/myRadioGroup">
 
                             <RadioButton
                                 android:layout_marginBottom="15dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/sound"
+                                android:id="@+id/radiobtn1"
                                 android:textSize="16dp"
                                 android:text="Cash on Delivery" />
 
@@ -332,7 +334,7 @@
                                 android:textSize="16dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/vibration"
+                                android:id="@+id/radiobtn2"
                                 android:text="PhonePe /  Paytm / Gpay /upi" />
 
 
@@ -350,6 +352,7 @@
             android:layout_height="match_parent">
 
             <Button
+                android:id="@+id/payment_btn"
                 android:layout_alignParentBottom="true"
                 android:text="Place Order"
                 android:textColor="@android:color/white"

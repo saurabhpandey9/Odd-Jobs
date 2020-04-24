@@ -77,38 +77,64 @@ public class OrderConfirmation extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        Bundle b = getIntent().getExtras();
-        //product_key = b.get("product_key").toString();
-        product_name = b.get("product_name").toString();
-        product_price = b.get("product_price").toString();
-        product_description = b.get("product_description").toString();
-        seller_name = b.get("seller_name").toString();
-        product_image = b.get("product_image").toString();
-        name = b.get("name").toString();
-        address = b.get("address").toString();
+        Bundle bundle = getIntent().getExtras();
+        //product_key = bundle.get("product_key").toString();
+        product_name = bundle.get("product_name").toString();
+        product_price = bundle.get("product_price").toString();
+        product_description = bundle.get("product_description").toString();
+        seller_name = bundle.get("seller_name").toString();
+        product_image = bundle.get("product_image").toString();
+        name = bundle.get("name").toString();
+        address = bundle.get("address").toString();
 
-        if (currentUser != null) {
+
+        if (currentUser==null){
+            sendToLogin();
+        }
+        else if (bundle==null){
+            onBackPressed();
+        }
+        else {
+
+            Picasso.get().load(product_image).into(imageView11);
+            tvAdd.setText(address);
+            tvPName.setText(product_name);
+            tvName.setText(name);
+            tvPPrice.setText("₹ " +product_price);
+            tvAdd.setText(address);
+
             user_id = currentUser.getUid();
-            showDetails();
+
             buybutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    nextStep();
+                    redirectPrefinalPayment();
                 }
             });
+
         }
 
     }
 
 
-    private void showDetails() {
-        Picasso.get().load(product_image).into(imageView11);
-        tvAdd.setText(address);
-        tvPName.setText(product_name);
-        tvName.setText(name);
-        tvPPrice.setText("₹ " +product_price);
-        tvAdd.setText(address);
+    private void redirectPrefinalPayment(){
+
+        Intent singleproducIntent = new Intent(OrderConfirmation.this, Pre_payment_Activity.class);
+        singleproducIntent.putExtra("name", name);
+        singleproducIntent.putExtra("address", address);
+        singleproducIntent.putExtra("total_product_count", "1");
+        singleproducIntent.putExtra("total_price", product_price);
+        singleproducIntent.putExtra("product_image", product_image);
+        singleproducIntent.putExtra("product_name", product_name);
+        singleproducIntent.putExtra("product_description", product_description);
+        singleproducIntent.putExtra("company_name", seller_name);
+        singleproducIntent.putExtra("order_typeflag", "single");
+        startActivity(singleproducIntent);
+        finish();
+
     }
+
+    //Todo :: isko final payment me add karenge
 
     private void nextStep() {
         HashMap<String, Object> dataMap = new HashMap<>();
@@ -135,5 +161,12 @@ public class OrderConfirmation extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void sendToLogin() {
+        Intent loginIntent = new Intent(OrderConfirmation.this, login.class);
+        startActivity(loginIntent);
+        mAuth.signOut();
+        finishAffinity();
     }
 }

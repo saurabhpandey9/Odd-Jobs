@@ -15,13 +15,7 @@
         android:roundIcon="@drawable/ic_shopping_cart_"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Payment_final_Activity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
+        <activity android:name=".Payment_final_Activity"></activity>
         <activity android:name=".Pre_payment_Activity" >
 
         </activity>
