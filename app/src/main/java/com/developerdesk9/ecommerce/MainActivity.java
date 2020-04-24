@@ -222,6 +222,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            case R.id.nav_myorder:
                startActivity(new Intent(getApplicationContext(),OrderActivity.class));
                break;
+           case R.id.nav_transaction_details:
+               startActivity(new Intent(getApplicationContext(),TransactionActivity.class));
+               break;
            case R.id.nav_my_account:
                startActivity(new Intent(getApplicationContext(),MyAccount.class));
                break;

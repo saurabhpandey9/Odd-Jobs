@@ -154,9 +154,8 @@ public class ApplyForBusinessAccActivity extends AppCompatActivity {
 
     private void sendToLogin() {
         mAuth.signOut();
-        finishAffinity();
         Intent loginIntent = new Intent(getApplicationContext(),login.class);
         startActivity(loginIntent);
-        finish();
+        finishAffinity();
     }
 }

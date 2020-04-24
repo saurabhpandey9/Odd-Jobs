@@ -418,8 +418,8 @@ public class Payment_final_Activity extends AppCompatActivity {
     public void back_cancel_press_btn_response(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Alert!");
-        builder.setMessage("Do you want to Cancel transaction");
+        builder.setTitle("Cancel Transaction!");
+        builder.setMessage("Are you sure you want cancel transaction");
         builder.setCancelable(false);
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override

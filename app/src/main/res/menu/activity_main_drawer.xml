@@ -47,12 +47,16 @@
 
         <item
             android:id="@+id/nav_myorder"
-            android:icon="@drawable/ic_order_icon"
+            android:icon="@drawable/ic_order"
             android:title="My Orders" />
         <item
             android:id="@+id/nav_mycart"
             android:icon="@drawable/ic_shopping_cart_"
             android:title="My Cart" />
+        <item
+            android:id="@+id/nav_transaction_details"
+            android:icon="@drawable/ic_transaction"
+            android:title="My Transactions" />
         <item
             android:icon="@drawable/ic_account"
             android:id="@+id/nav_my_account"

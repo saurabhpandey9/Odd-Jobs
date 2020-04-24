@@ -67,7 +67,6 @@ public class OrderActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        orderRV = findViewById(R.id.orderRV);
 
         orderRV = findViewById(R.id.orderRV);
         mOrderAdapter = new OrderAdapter(orderList, mContext);
