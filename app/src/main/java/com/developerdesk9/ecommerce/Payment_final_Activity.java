@@ -96,7 +96,6 @@ public class Payment_final_Activity extends AppCompatActivity {
         toolbar=findViewById(R.id.toolbar_final_payment);
         toolbar.setTitle("Payments");
         toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setSubtitle("ok hai");
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

@@ -29,8 +29,8 @@ public class OrderConfirmation extends AppCompatActivity {
 
     private Toolbar toolbar8;
 
-    private TextView tvName, tvPName, tvPPrice, tvAdd;
-    private ImageView imageView11;
+    private TextView tv_recpientname, tv_product_name, tvPPrice, tvAdd,tv_retailer;
+    private ImageView IV_product_image;
     private Button buybutton;
 
     private DatabaseReference mDatabase;
@@ -66,18 +66,21 @@ public class OrderConfirmation extends AppCompatActivity {
             }
         });
 
-        tvName = findViewById(R.id.tvName);
-        tvPName = findViewById(R.id.tvPName);
+        tv_recpientname = findViewById(R.id.recpientname);
+        tv_product_name = findViewById(R.id.tv_ProductName);
         tvPPrice = findViewById(R.id.tvPPrice);
         tvAdd = findViewById(R.id.tvAdd);
         buybutton = findViewById(R.id.buybutton);
-        imageView11 = findViewById(R.id.imageView11);
+        IV_product_image = findViewById(R.id.iv_product_image);
+        tv_retailer=findViewById(R.id.tv_xx_retailer_name);
+        TextView proctdesc_tv=findViewById(R.id.product_dic);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
         Bundle bundle = getIntent().getExtras();
+
         //product_key = bundle.get("product_key").toString();
         product_name = bundle.get("product_name").toString();
         product_price = bundle.get("product_price").toString();
@@ -87,7 +90,6 @@ public class OrderConfirmation extends AppCompatActivity {
         name = bundle.get("name").toString();
         address = bundle.get("address").toString();
 
-
         if (currentUser==null){
             sendToLogin();
         }
@@ -96,12 +98,13 @@ public class OrderConfirmation extends AppCompatActivity {
         }
         else {
 
-            Picasso.get().load(product_image).into(imageView11);
+            Picasso.get().load(product_image).fit().into(IV_product_image);
+            tv_recpientname.setText(name);
             tvAdd.setText(address);
-            tvPName.setText(product_name);
-            tvName.setText(name);
+            tv_product_name.setText(product_name);
             tvPPrice.setText("₹ " +product_price);
-            tvAdd.setText(address);
+            tv_retailer.setText("by "+seller_name);
+            proctdesc_tv.setText(product_description);
 
             user_id = currentUser.getUid();
 
@@ -131,35 +134,6 @@ public class OrderConfirmation extends AppCompatActivity {
         singleproducIntent.putExtra("order_typeflag", "single");
         startActivity(singleproducIntent);
         finish();
-
-    }
-
-    //Todo :: isko final payment me add karenge
-
-    private void nextStep() {
-        HashMap<String, Object> dataMap = new HashMap<>();
-        dataMap.put("product_image", product_image);
-        dataMap.put("product_name", product_name);
-        dataMap.put("product_price", product_price);
-        dataMap.put("product_description", product_description);
-        dataMap.put("company_name", seller_name);
-        dataMap.put("name", name);
-        dataMap.put("address", address);
-        dataMap.put("email", email);
-        dataMap.put("user_id", user_id);
-
-        //TODO 1. Here we will implement upi payment gateway then order placed successfully
-        //TODO 2. we will do it later
-
-        mDatabase.child("orders").child(user_id).push().setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(getApplicationContext(), "Product purchased successfully", Toast.LENGTH_LONG).show();
-                Intent mainIntent = new Intent(OrderConfirmation.this, OrderActivity.class);
-                startActivity(mainIntent);
-                finish();
-            }
-        });
 
     }
 
