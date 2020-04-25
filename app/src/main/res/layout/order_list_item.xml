@@ -1,142 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/productcv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:cardElevation="1dp"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:elevation="3dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/seller_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="Seller"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/imageView10"
-                app:layout_constraintTop_toBottomOf="@+id/product_name" />
 
-            <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="100dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:elevation="5dp"
-                android:scaleType="centerInside"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/product_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="Product name "
-                android:textColor="@color/colorBlack"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView10"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:layout_alignParentLeft="true"
+                    android:text="Order ID:"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            <TextView
-                android:id="@+id/product_price"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="Product Price"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/imageView10"
-                app:layout_constraintTop_toBottomOf="@+id/seller_name" />
-
-            <TextView
-                android:id="@+id/product_description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:maxLines="4"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/imageView10"
-                app:layout_constraintTop_toBottomOf="@+id/product_price" />
-
-            <ProgressBar
-                android:id="@+id/progressBar3"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-                app:layout_constraintEnd_toEndOf="@+id/imageView10"
-                app:layout_constraintStart_toStartOf="@+id/imageView10"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/cartDelbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@android:color/white"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text="Delete Product"
-                android:textAllCaps="false"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="16sp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/product_description" />
-
+                <TextView
+                    android:id="@+id/order_orderid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="XXXXXXXXXXXXXXXX"
+                    android:textStyle="bold" />
+            </RelativeLayout>
             <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/darker_gray"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/product_description"
-            app:layout_constraintVertical_bias="1.0" />
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="10dp"
+                android:background="#C5C1C1" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:maxLines="2"
+                        android:id="@+id/order_product_name"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Product Name"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/order_product_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Price :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="18sp"
+                        />
+
+                    <TextView
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:id="@+id/order_retailer_name"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="Retailer"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/order_product_image"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp" />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <View
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ADABAB" />
+
+
+            <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:text="Date  &amp; Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/order_date"
+                android:layout_alignParentRight="true"
+                android:text="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_alignParentLeft="true"
+                    android:text="Transaction Status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/order_trasaction_status"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:layout_alignParentRight="true"
+                    android:text="XXXXX"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

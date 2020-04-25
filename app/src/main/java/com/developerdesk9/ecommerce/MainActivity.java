@@ -3,6 +3,7 @@ package com.developerdesk9.ecommerce;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -238,7 +239,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            case R.id.nav_legal:
                break;
            case R.id.nav_about_developer:
-
+               Intent viewIntent =new Intent("android.intent.action.VIEW",Uri.parse("https://github.com/saurabhpandey9/"));
+               startActivity(viewIntent);
                break;
 
            default:

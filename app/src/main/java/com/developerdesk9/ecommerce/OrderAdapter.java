@@ -35,11 +35,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Order order = orderList.get(i);
-        Picasso.get().load(order.getProduct_image()).fit().into(viewHolder.imageView10);
+        Picasso.get().load(order.getProduct_image()).fit().into(viewHolder.iv_product_image);
         viewHolder.product_name.setText(order.getProduct_name());
         viewHolder.product_price.setText("₹" + order.getProduct_price());
-        viewHolder.seller_name.setText("by " + order.getSeller_name());
-        viewHolder.product_description.setText(order.getProduct_description());
+        viewHolder.seller_name.setText("by " + order.getCompany_name());
+        viewHolder.order_id.setText(order.getOrder_id());
+        viewHolder.order_date.setText(order.getOrder_date());
+        viewHolder.order_status.setText(order.getOrder_status());
     }
 
     @Override
@@ -49,19 +51,25 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView imageView10;
-        private TextView product_name, product_price, product_description, seller_name;
+        private ImageView iv_product_image;
+        private TextView product_name, product_price, seller_name,order_id,order_date,order_status;
+
         private CardView productcv;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView10 = itemView.findViewById(R.id.imageView10);
-            product_name = itemView.findViewById(R.id.product_name);
-            product_price = itemView.findViewById(R.id.product_price);
-            product_description = itemView.findViewById(R.id.product_description);
-            seller_name = itemView.findViewById(R.id.seller_name);
+            iv_product_image = itemView.findViewById(R.id.order_product_image);
             productcv = itemView.findViewById(R.id.productcv);
+
+            product_name = itemView.findViewById(R.id.order_product_name);
+            product_price = itemView.findViewById(R.id.order_product_price);
+            seller_name = itemView.findViewById(R.id.order_retailer_name);
+            order_id = itemView.findViewById(R.id.order_orderid);
+            order_date= itemView.findViewById(R.id.order_date);
+            order_status= itemView.findViewById(R.id.order_trasaction_status);
+
+
         }
     }
 }
