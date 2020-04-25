@@ -42,12 +42,13 @@ public class OrderConfirmation extends AppCompatActivity {
     private String name;
     private String address;
 
-    private String product_key;
-    private String product_name;
-    private String product_price;
-    private String product_description;
-    private String seller_name;
-    private String product_image;
+    private String product_key="XX";
+    private String product_name="XX";
+    private String product_price="XX";
+    private String product_description="XX";
+    private String seller_name="XX";
+    private String product_image="XX";
+    private boolean isTextViewClicked = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,7 @@ public class OrderConfirmation extends AppCompatActivity {
         buybutton = findViewById(R.id.buybutton);
         IV_product_image = findViewById(R.id.iv_product_image);
         tv_retailer=findViewById(R.id.tv_xx_retailer_name);
-        TextView proctdesc_tv=findViewById(R.id.product_dic);
+        final TextView proctdesc_tv=findViewById(R.id.product_dic);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
@@ -98,15 +99,42 @@ public class OrderConfirmation extends AppCompatActivity {
         }
         else {
 
-            Picasso.get().load(product_image).fit().into(IV_product_image);
+
+            // at this point getting error
+            // TODO :: buy now cash point mil gya
+
+            try {
+                Picasso.get().load(product_image).fit().into(IV_product_image);
+            }catch (Exception e){
+
+            }
+
             tv_recpientname.setText(name);
             tvAdd.setText(address);
             tv_product_name.setText(product_name);
-            tvPPrice.setText("₹ " +product_price);
             tv_retailer.setText("by "+seller_name);
             proctdesc_tv.setText(product_description);
 
+            String newNumber = CommaSeperate.getFormatedNumber(product_price);
+            tvPPrice.setText("₹ " +newNumber);
+
             user_id = currentUser.getUid();
+
+
+            proctdesc_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (isTextViewClicked){
+                        proctdesc_tv.setMaxLines(Integer.MAX_VALUE) ;
+                        isTextViewClicked=false;
+                    }
+                    else {
+                        proctdesc_tv.setMaxLines(4);
+                        isTextViewClicked=true;
+                    }
+                }
+            });
 
             buybutton.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -145,7 +145,8 @@ public class Individual_product_view_Activity extends AppCompatActivity {
         toolbar.setTitle(product_name);
         tvPName.setText(product_name);
         tvSName.setText("by " + seller_name);
-        tvPPrice.setText("₹" + product_price);
+        String newNumber = CommaSeperate.getFormatedNumber(product_price);
+        tvPPrice.setText("₹" + newNumber);
         tvPDesc.setText(product_description);
     }
 
@@ -174,9 +175,9 @@ public class Individual_product_view_Activity extends AppCompatActivity {
     }
 
     private void sendToLogin() {
-        Intent loginIntent = new Intent(Individual_product_view_Activity.this, long.class);
+        Intent loginIntent = new Intent(Individual_product_view_Activity.this, login.class);
         startActivity(loginIntent);
-        finish();
+        finishAffinity();
     }
 
     private void sendToMain() {

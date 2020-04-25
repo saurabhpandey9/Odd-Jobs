@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -51,14 +53,25 @@ public class ChecksumActivity extends AppCompatActivity {
 
         user_id=currentUser.getUid();
 
+        if (currentUser==null){
+            sendToLogin();
+        }
+
 
         textView=findViewById(R.id.tv_checksum);
 
         // bucket flag to check buynow/ cart redirect
+
         Bundle bundle = getIntent().getExtras();
         from_cart = bundle.get("from_cart").toString();
 
+        if (bundle.isEmpty()){
+            onBackPressed();
+            Toast.makeText(getApplicationContext(),"Please Choose product",Toast.LENGTH_LONG).show();
+        }
+
         if (from_cart.equals("no")) {
+
             product_name = bundle.get("product_name").toString();
             product_price = bundle.get("product_price").toString();
             product_description = bundle.get("product_description").toString();
@@ -67,6 +80,7 @@ public class ChecksumActivity extends AppCompatActivity {
         }
 
         else if (from_cart.equals("yes")){
+
             total_price = bundle.get("total_price").toString();
             total_product_count = bundle.get("total_product_count").toString();
         }
@@ -134,8 +148,6 @@ public class ChecksumActivity extends AppCompatActivity {
                 cartBuyIntent.putExtra("address", raddress);
                 startActivity(cartBuyIntent);
                 finish();
-
-
         }
 
 
@@ -154,6 +166,13 @@ public class ChecksumActivity extends AppCompatActivity {
                 finish();
         }
 
+    }
+
+
+    private void sendToLogin() {
+        Intent loginIntent = new Intent(ChecksumActivity.this, login.class);
+        startActivity(loginIntent);
+       finishAffinity();
     }
 
 

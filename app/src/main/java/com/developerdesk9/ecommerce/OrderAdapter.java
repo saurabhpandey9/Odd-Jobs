@@ -37,7 +37,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         Order order = orderList.get(i);
         Picasso.get().load(order.getProduct_image()).fit().into(viewHolder.iv_product_image);
         viewHolder.product_name.setText(order.getProduct_name());
-        viewHolder.product_price.setText("₹" + order.getProduct_price());
+        String newNumber = CommaSeperate.getFormatedNumber(order.getProduct_price());
+        viewHolder.product_price.setText("₹" + newNumber);
         viewHolder.seller_name.setText("by " + order.getCompany_name());
         viewHolder.order_id.setText("TI"+order.getOrder_id());
         viewHolder.order_date.setText(order.getOrder_date());

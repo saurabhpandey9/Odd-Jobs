@@ -150,7 +150,8 @@ public class CartListActivity extends AppCompatActivity {
                         total_price = total_price + cost;
 
                     }
-                    tvPrice.setText(String.valueOf("₹" + total_price));
+                    String csptotalprice=CommaSeperate.getFormatedNumber(""+total_price);
+                    tvPrice.setText(String.valueOf("₹" + csptotalprice));
 
                 }
 

@@ -26,8 +26,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder> {
 
@@ -74,8 +77,12 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         user_id = currentUser.getUid();
+
+        // for comma seperate
+        String newNumber = CommaSeperate.getFormatedNumber(products.getProduct_price());
+        viewHolder.tvProductPrice.setText("₹" + newNumber);
+
         viewHolder.tvProductName.setText(products.getProduct_name());
-        viewHolder.tvProductPrice.setText("₹" + products.getProduct_price());
         viewHolder.tvSellerName.setText("by " + products.getCompany_name());
         viewHolder.productcv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +95,12 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             }
         });
 
+        // Todo :: yet not resolved
+        // facing problem of crash at this button in SDK >=28
+
+
         viewHolder.buy_now_btn_pl.setOnClickListener(new View.OnClickListener() {
-                @Override
+            @Override
             public void onClick(View v) {
                 Intent productIntent = new Intent(mContext, ChecksumActivity.class);
                 //productIntent.putExtra("product_key", );
@@ -100,7 +111,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                 productIntent.putExtra("company_name", products.getCompany_name());
                 productIntent.putExtra("from_cart", "no");
                 mContext.startActivity(productIntent);
-
             }
         });
 
@@ -148,8 +158,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             tvProductPrice = itemView.findViewById(R.id.tvProductPrice);
             tvSellerName = itemView.findViewById(R.id.tvSellerName);
             productcv = itemView.findViewById(R.id.productcv1);
-            buy_now_btn_pl = itemView.findViewById(R.id.btn_buynow_productlist);
+            buy_now_btn_pl = itemView.findViewById(R.id.btn_buynow_productlis);
             button15 = itemView.findViewById(R.id.button15);
         }
     }
+
 }

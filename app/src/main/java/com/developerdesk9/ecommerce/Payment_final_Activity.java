@@ -135,8 +135,9 @@ public class Payment_final_Activity extends AppCompatActivity {
         tv_totalamount=findViewById(R.id.final_payment_amount_payable); // these both are same as delivery charges case is not
         tv_orderID=findViewById(R.id.final_payment_order_id);
         tv_itemcount.setText(total_product_count);
-        tv_price1.setText("₹"+total_price);
-        tv_totalamount.setText("₹"+total_price);
+        String newNumber = CommaSeperate.getFormatedNumber(total_price);
+        tv_price1.setText("₹"+newNumber);
+        tv_totalamount.setText("₹"+newNumber);
         tv_orderID.setText("TID"+Orderid);
 
         //over showoff

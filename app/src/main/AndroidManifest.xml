@@ -15,6 +15,11 @@
         android:roundIcon="@drawable/ic_shopping_cart_"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="Odd Jobs"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TransactionActivity"></activity>
         <activity android:name=".Payment_final_Activity" />
         <activity android:name=".Pre_payment_Activity"></activity>
@@ -32,11 +37,6 @@
         <activity android:name=".CartListActivity" />
         <activity android:name=".Preorder_confirmation_cartitems" />
         <activity android:name=".OrderConfirmation" />
-        <activity
-            android:name=".MainActivity"
-            android:label="Odd Jobs"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/FullScreen">

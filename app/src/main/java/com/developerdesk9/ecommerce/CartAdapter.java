@@ -54,11 +54,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-
-
         final Cart cart = cartList.get(i);
+
+        String newNumber = CommaSeperate.getFormatedNumber(cart.getProduct_price());
+
+
         viewHolder.product_name.setText(cart.getProduct_name());
-        viewHolder.product_price.setText("₹" + cart.getProduct_price());
+        viewHolder.product_price.setText("₹" + newNumber);
         viewHolder.seller_name.setText("by " + cart.getCompany_name());
         Picasso.get().load(cart.getProduct_image()).fit().into(viewHolder.imageView10, new Callback() {
             @Override

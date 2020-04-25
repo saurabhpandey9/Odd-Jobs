@@ -235,8 +235,9 @@
 
 
                                 <TextView
+                                    android:maxLines="3"
                                     android:id="@+id/tv_ProductName"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="240dp"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="sans-serif-medium"
                                     android:text="Product Name"
