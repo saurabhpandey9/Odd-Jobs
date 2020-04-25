@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -88,8 +89,17 @@ public class ChecksumActivity extends AppCompatActivity {
                         checksumredirect(recipient_name,recipient_address);
                     }
                     else {
-                        textView.setText("Address Not Found !\nPlease Update default address");
+                        textView.setText("Address Not Found !\nPlease Update default address\n\nClick here to Update");
                         textView.setTextColor(Color.RED);
+                        textView.setClickable(true);
+                        textView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getApplicationContext(),MyaddressActivity.class));
+                                finish();
+
+                            }
+                        });
                     }
 
                 }

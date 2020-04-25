@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,6 +35,7 @@ public class SignUp extends AppCompatActivity {
     private FirebaseUser currentUser;
 
     private String user_id = null;
+    private LinearLayout ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class SignUp extends AppCompatActivity {
         etRMobileno=findViewById(R.id.etLmobileno);
         rbtn = findViewById(R.id.rbtn);
         loader=findViewById(R.id.loadersignup);
+        ll=findViewById(R.id.llsignup);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -81,6 +84,7 @@ public class SignUp extends AppCompatActivity {
                     return;
                 } else {
                     loader.setVisibility(View.VISIBLE);
+                    ll.setClickable(false);
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -98,14 +102,32 @@ public class SignUp extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
 
+
                                             Toast.makeText(getApplicationContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
+                                            mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(getApplicationContext(), "Email verification sent", Toast.LENGTH_LONG).show();
+
+//                                            progressBar2.setVisibility(View.INVISIBLE);
+
+                                                    } else {
+                                                        ll.setClickable(true);
+                                                        String errMsg = task.getException().getMessage();
+                                                        Toast.makeText(getApplicationContext(), "Error: " + errMsg, Toast.LENGTH_LONG).show();
+                                                    }
+                                                }
+                                            });
+
+
                                             mAuth.signOut();
                                             startActivity(new Intent(SignUp.this,login.class));
-                                            Toast.makeText(getApplicationContext(), "Please verify your Account before login", Toast.LENGTH_SHORT).show();
                                             finishAffinity();
                                         }
                                         else {
                                             loader.setVisibility(View.INVISIBLE);
+                                            ll.setClickable(true);
                                             Toast.makeText(getApplicationContext(),""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                             mAuth.signOut();
                                             finishAffinity();
@@ -114,29 +136,10 @@ public class SignUp extends AppCompatActivity {
                                     }
                                 });
 
-                                //Todo :: email verification left to implement
-
-
-//                                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                    @Override
-//                                    public void onComplete(@NonNull Task<Void> task) {
-//                                        if (task.isSuccessful()) {
-//                                            Toast.makeText(getApplicationContext(), "Register Successfully", Toast.LENGTH_LONG).show();
-//                                            Toast.makeText(getApplicationContext(), "Email verification sent", Toast.LENGTH_SHORT).show();
-//
-////                                            progressBar2.setVisibility(View.INVISIBLE);
-//
-//                                        } else {
-//                                            String errMsg = task.getException().getMessage();
-//                                            Toast.makeText(getApplicationContext(), "Error: " + errMsg, Toast.LENGTH_LONG).show();
-//                                        }
-//                                    }
-//                                });
-
 
                             } else {
                                 loader.setVisibility(View.INVISIBLE);
-//                                progressBar2.setVisibility(View.INVISIBLE);
+                                ll.setClickable(true);
                                 String errMsg = task.getException().getMessage();
                                 Toast.makeText(getApplicationContext(), "Error: " + errMsg, Toast.LENGTH_LONG).show();
                                 mAuth.signOut();

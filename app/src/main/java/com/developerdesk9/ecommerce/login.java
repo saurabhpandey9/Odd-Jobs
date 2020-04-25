@@ -3,10 +3,13 @@ package com.developerdesk9.ecommerce;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -54,6 +57,7 @@ public class login extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+
 
         if (currentUser != null) {
             sendToMain();
@@ -105,9 +109,17 @@ public class login extends AppCompatActivity {
                                 dataMap.put("timestamp", System.currentTimeMillis());
                                 mDatabase.child("users").child(user_id).child("login_details").child(key).updateChildren(dataMap);
 
-
                             loader.setVisibility(View.INVISIBLE);
-                            sendToMain();
+
+                                mAuth = FirebaseAuth.getInstance();
+                                currentUser = mAuth.getCurrentUser();
+                            if (currentUser.isEmailVerified()){
+                                sendToMain();
+                            }
+                            else {
+                                emailverification();
+                            }
+
 
 
                             } else {
@@ -134,8 +146,41 @@ public class login extends AppCompatActivity {
     }
 
     private void sendToMain() {
-        Intent registerIntent = new Intent(login.this, MainActivity.class);
-        startActivity(registerIntent);
-        finishAffinity();
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
+        if (currentUser.isEmailVerified()){
+            Intent registerIntent = new Intent(login.this, MainActivity.class);
+            startActivity(registerIntent);
+            finishAffinity();
+        }
+        else {
+            Toast.makeText(getApplicationContext(),"Please verify your Account before Login ",Toast.LENGTH_LONG).show();
+            mAuth.signOut();
+        }
+
+    }
+
+    private void emailverification(){
+        Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(100);
+
+        mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    startActivity(new Intent(getApplicationContext(),login.class));
+                    finish();
+                    Toast.makeText(getApplicationContext(), "Email verification sent", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Please Verify your Account before Login", Toast.LENGTH_LONG).show();
+
+
+                } else {
+                    String errMsg = task.getException().getMessage();
+                    Toast.makeText(getApplicationContext(), "Error: " + errMsg, Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 }
