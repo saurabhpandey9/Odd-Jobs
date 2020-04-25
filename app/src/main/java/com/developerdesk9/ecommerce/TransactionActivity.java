@@ -100,6 +100,7 @@ public class TransactionActivity extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                transactionAdapter.notifyDataSetChanged();
 
             }
 

@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,6 +75,10 @@ public class Pre_payment_Activity extends AppCompatActivity {
 
         user_id=currentUser.getUid();
 
+
+
+        String currentDateTimeString = java.text.DateFormat.getDateTimeInstance().format(new Date());
+
         Orderid=mDatabase.child("TransactionDetails").push().getKey();
 
         Map<String,Object> data=new HashMap<>();
@@ -80,6 +86,8 @@ public class Pre_payment_Activity extends AppCompatActivity {
         data.put("order_id",Orderid);
         data.put("user_id",user_id);
         data.put("order_status","NA");
+        data.put("tr_amount",total_price);
+        data.put("tr_date",currentDateTimeString);
 
 
         mDatabase.child("TransactionDetails").child(Orderid).updateChildren(data).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -109,9 +117,6 @@ public class Pre_payment_Activity extends AppCompatActivity {
                     startActivity(new Intent(Pre_payment_Activity.this,Cart.class));
                     finishAffinity();
                 }
-
-
-
             }
         });
 

@@ -34,7 +34,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         holder.tv_orderid.setText("TI"+transaction.getOrder_id());
         holder.tv_transaction_status.setText(transaction.getOrder_status());
         holder.tv_date.setText(transaction.getTr_date());
-        holder.tv_amount.setText(transaction.getTr_amount());
+        holder.tv_amount.setText("₹"+transaction.getTr_amount());
     }
 
     @Override
@@ -56,7 +56,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             super(itemView);
 
             tv_orderid=itemView.findViewById(R.id.transaction_orderid);
-            tv_transaction_status=itemView.findViewById(R.id.transaction_status);
+            tv_transaction_status=itemView.findViewById(R.id.trasaction_status);
             tv_date=itemView.findViewById(R.id.transaction_date);
             tv_amount=itemView.findViewById(R.id.transaction_amount);
 

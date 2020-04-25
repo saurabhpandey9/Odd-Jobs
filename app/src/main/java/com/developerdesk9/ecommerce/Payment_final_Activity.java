@@ -31,6 +31,7 @@ import com.shreyaspatil.EasyUpiPayment.EasyUpiPayment;
 import com.shreyaspatil.EasyUpiPayment.listener.PaymentStatusListener;
 import com.shreyaspatil.EasyUpiPayment.model.TransactionDetails;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,13 +72,16 @@ public class Payment_final_Activity extends AppCompatActivity {
     private EasyUpiPayment easyUpiPayment;
     private LinearLayout linearLayout;
 
-    private ProgressDialog progressDialog;;
+    private ProgressDialog progressDialog;
+    private String currentDateTimeString;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_final_);
+
+        currentDateTimeString = java.text.DateFormat.getDateTimeInstance().format(new Date());
 
         progressDialog=new ProgressDialog(this);
         progressDialog.setTitle("Please Wait");
@@ -249,9 +253,11 @@ public class Payment_final_Activity extends AppCompatActivity {
         dataMap.put("user_id", user_id);
         dataMap.put("order_status",order_status);
         dataMap.put("order_id",Orderid);
+        dataMap.put("order_date",currentDateTimeString);
 
         Map<String ,Object> data=new HashMap<>();
         data.put("order_status",order_status);
+        data.put("tr_date",currentDateTimeString);
 
         mDatabase.child("TransactionDetails").child(Orderid).updateChildren(data);
 
@@ -261,7 +267,7 @@ public class Payment_final_Activity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 Toast.makeText(getApplicationContext(), "Order Placed successfully", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
-                Intent mainIntent = new Intent(Payment_final_Activity.this, OrderActivity.class);
+                Intent mainIntent = new Intent(Payment_final_Activity.this, TransactionActivity.class);
                 startActivity(mainIntent);
                 finish();
             }
@@ -274,6 +280,7 @@ public class Payment_final_Activity extends AppCompatActivity {
 
         Map<String ,Object> data=new HashMap<>();
         data.put("order_status",order_status);
+        data.put("tr_date",currentDateTimeString);
         mDatabase.child("TransactionDetails").child(Orderid).updateChildren(data);
         mDatabase.child("cart").child(user_id).addValueEventListener(new ValueEventListener() {
             @Override
@@ -291,7 +298,7 @@ public class Payment_final_Activity extends AppCompatActivity {
                     map.put("address",address);
                     map.put("name",name);
                     map.put("order_id",Orderid);
-
+                    map.put("order_date",currentDateTimeString);
                     mDatabase.child("orders").child(user_id).push().setValue(map);
                 }
             }
@@ -309,15 +316,11 @@ public class Payment_final_Activity extends AppCompatActivity {
         });
         progressDialog.dismiss();
         Toast.makeText(getApplicationContext(), "Order Placed successfully", Toast.LENGTH_LONG).show();
-        Intent orderIntent = new Intent(Payment_final_Activity.this, OrderActivity.class);
+        Intent orderIntent = new Intent(Payment_final_Activity.this, TransactionActivity.class);
         startActivity(orderIntent);
         finish();
 
     }
-
-
-
-
 
     @Override
     public void onBackPressed() {
@@ -394,14 +397,14 @@ public class Payment_final_Activity extends AppCompatActivity {
         progressDialog.show();
         Map<String ,Object> data=new HashMap<>();
         data.put("order_status",order_status);
+        data.put("tr_date",currentDateTimeString);
         mDatabase.child("TransactionDetails").child(Orderid).updateChildren(data).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(getApplicationContext(),"Transaction Failed..",Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
-                    //Todo :: Will Change order activity to transaction history in near future (When it will program)
-                    startActivity(new Intent(getApplicationContext(),OrderActivity.class));
+                    startActivity(new Intent(getApplicationContext(),TransactionActivity.class));
                     finish();
                 }
                 else {
