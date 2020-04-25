@@ -97,7 +97,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                 productIntent.putExtra("product_price", products.getProduct_price());
                 productIntent.putExtra("product_image", products.getProduct_image());
                 productIntent.putExtra("product_description", products.getProduct_description());
-                productIntent.putExtra("seller_name", products.getCompany_name());
+                productIntent.putExtra("company_name", products.getCompany_name());
                 productIntent.putExtra("from_cart", "no");
                 mContext.startActivity(productIntent);
 
@@ -112,7 +112,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                 dataMap.put("product_name", products.getProduct_name());
                 dataMap.put("product_price", products.getProduct_price());
                 dataMap.put("product_image", products.getProduct_image());
-                dataMap.put("seller_name", products.getCompany_name());
+                dataMap.put("company_name", products.getCompany_name());
                 dataMap.put("cart_key", cart_key);
                 dataMap.put("product_description", products.getProduct_description());
                 mDatabase.child("cart").child(user_id).child(cart_key).updateChildren(dataMap).addOnCompleteListener(new OnCompleteListener<Void>() {

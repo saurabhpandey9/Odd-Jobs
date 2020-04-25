@@ -59,8 +59,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         final Cart cart = cartList.get(i);
         viewHolder.product_name.setText(cart.getProduct_name());
         viewHolder.product_price.setText("₹" + cart.getProduct_price());
-        viewHolder.seller_name.setText("by " + cart.getSeller_name());
-        viewHolder.product_description.setText(cart.getProduct_description());
+        viewHolder.seller_name.setText("by " + cart.getCompany_name());
         Picasso.get().load(cart.getProduct_image()).fit().into(viewHolder.imageView10, new Callback() {
             @Override
             public void onSuccess() {
@@ -96,7 +95,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView imageView10;
-        private TextView product_name, product_price, product_description, seller_name;
+        private TextView product_name, product_price, seller_name;
         private CardView productcv;
         private TextView cartDelbtn;
         private ProgressBar progressBar3;
@@ -107,7 +106,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             imageView10 = itemView.findViewById(R.id.imageView10);
             product_name = itemView.findViewById(R.id.product_name);
             product_price = itemView.findViewById(R.id.product_price);
-            product_description = itemView.findViewById(R.id.product_description);
             seller_name = itemView.findViewById(R.id.seller_name);
             productcv = itemView.findViewById(R.id.productcv);
             cartDelbtn = itemView.findViewById(R.id.cartDelbtn);

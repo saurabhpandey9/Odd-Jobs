@@ -61,7 +61,7 @@ public class ChecksumActivity extends AppCompatActivity {
             product_name = bundle.get("product_name").toString();
             product_price = bundle.get("product_price").toString();
             product_description = bundle.get("product_description").toString();
-            seller_name = bundle.get("seller_name").toString();
+            seller_name = bundle.get("company_name").toString();
             product_image = bundle.get("product_image").toString();
         }
 
@@ -137,7 +137,7 @@ public class ChecksumActivity extends AppCompatActivity {
                 productIntent.putExtra("product_price", product_price);
                 productIntent.putExtra("product_image", product_image);
                 productIntent.putExtra("product_description", product_description);
-                productIntent.putExtra("seller_name", seller_name);
+                productIntent.putExtra("company_name", seller_name);
                 productIntent.putExtra("name", rname);
                 productIntent.putExtra("address", raddress);
                 startActivity(productIntent);

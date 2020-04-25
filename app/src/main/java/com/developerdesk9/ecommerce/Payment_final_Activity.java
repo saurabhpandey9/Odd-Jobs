@@ -288,7 +288,7 @@ public class Payment_final_Activity extends AppCompatActivity {
                     Map<String, Object> map = (Map<String, Object>) ds.getValue();
                     Object producut_name = map.get("product_name");
                     Object product_image = map.get("product_image");
-                    Object seller_name = map.get("seller_name");
+                    Object seller_name = map.get("company_name");
                     Object cart_key = map.get("cart_key");
                     Object product_description = map.get("product_description");
                     Object product_price = map.get("product_price");

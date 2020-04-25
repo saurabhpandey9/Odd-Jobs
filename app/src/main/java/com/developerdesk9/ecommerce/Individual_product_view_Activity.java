@@ -122,7 +122,7 @@ public class Individual_product_view_Activity extends AppCompatActivity {
                         productIntent.putExtra("product_price", product_price);
                         productIntent.putExtra("product_image", product_image);
                         productIntent.putExtra("product_description", product_description);
-                        productIntent.putExtra("seller_name", seller_name);
+                        productIntent.putExtra("company_name", seller_name);
                         productIntent.putExtra("from_cart", "no");
                         startActivity(productIntent);
                     }
@@ -156,7 +156,7 @@ public class Individual_product_view_Activity extends AppCompatActivity {
         dataMap.put("product_name", product_name);
         dataMap.put("product_price", product_price);
         dataMap.put("product_image", product_image);
-        dataMap.put("seller_name", seller_name);
+        dataMap.put("company_name", seller_name);
         dataMap.put("cart_key", cart_key);
         dataMap.put("product_description", product_description);
         mDatabase.child("cart").child(user_id).child(cart_key).updateChildren(dataMap).addOnCompleteListener(new OnCompleteListener<Void>() {

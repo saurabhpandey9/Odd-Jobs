@@ -18,6 +18,11 @@
         android:orderInCategory="100"
         android:title="My Order"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_transaction"
+        android:orderInCategory="100"
+        android:title="My Transaction"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_my_account"

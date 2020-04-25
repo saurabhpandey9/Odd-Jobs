@@ -5,17 +5,17 @@ public class Cart {
     private String product_name;
     private String product_price;
     private String product_image;
-    private String seller_name;
+    private String company_name;
     private String cart_key;
     private String product_description;
 
     Cart() {}
 
-    public Cart(String product_name, String product_price, String product_image, String seller_name, String cart_key, String product_description) {
+    public Cart(String product_name, String product_price, String product_image, String company_name, String cart_key, String product_description) {
         this.product_name = product_name;
         this.product_price = product_price;
         this.product_image = product_image;
-        this.seller_name = seller_name;
+        this.company_name = company_name;
         this.cart_key = cart_key;
         this.product_description = product_description;
     }
@@ -44,12 +44,12 @@ public class Cart {
         this.product_image = product_image;
     }
 
-    public String getSeller_name() {
-        return seller_name;
+    public String getCompany_name() {
+        return company_name;
     }
 
-    public void setSeller_name(String seller_name) {
-        this.seller_name = seller_name;
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
     }
 
     public String getCart_key() {

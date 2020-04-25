@@ -85,7 +85,7 @@ public class OrderConfirmation extends AppCompatActivity {
         product_name = bundle.get("product_name").toString();
         product_price = bundle.get("product_price").toString();
         product_description = bundle.get("product_description").toString();
-        seller_name = bundle.get("seller_name").toString();
+        seller_name = bundle.get("company_name").toString();
         product_image = bundle.get("product_image").toString();
         name = bundle.get("name").toString();
         address = bundle.get("address").toString();
