@@ -56,14 +56,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
-        final Products products = productsList.get(i);
-        //viewHolder.progressBar3.setVisibility(View.VISIBLE);
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int position) {
+        final Products products = productsList.get(productsList.size()-position-1);
+
 
         Picasso.get().load(products.getProduct_image()).fit().into(viewHolder.productIV, new Callback() {
             @Override
             public void onSuccess() {
-                //viewHolder.progressBar3.setVisibility(View.INVISIBLE);
             }
 
             @Override

@@ -30,7 +30,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Transaction transaction=transactionList.get(position);
+        Transaction transaction=transactionList.get(transactionList.size()-position-1);
         holder.tv_orderid.setText("TI"+transaction.getOrder_id());
         holder.tv_transaction_status.setText(transaction.getOrder_status());
         holder.tv_date.setText(transaction.getTr_date());
@@ -40,8 +40,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     @Override
     public int getItemCount() {
-
-        Log.d("count",""+transactionList.size());
 
         return transactionList.size();
     }

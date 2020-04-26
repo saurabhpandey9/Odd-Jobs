@@ -33,8 +33,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Order order = orderList.get(i);
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        Order order = orderList.get(orderList.size()-position-1);
+
+
+
         Picasso.get().load(order.getProduct_image()).fit().into(viewHolder.iv_product_image);
         viewHolder.product_name.setText(order.getProduct_name());
         String newNumber = CommaSeperate.getFormatedNumber(order.getProduct_price());

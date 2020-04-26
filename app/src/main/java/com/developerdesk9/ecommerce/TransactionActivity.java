@@ -70,6 +70,7 @@ public class TransactionActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(transactionAdapter);
 
+
         mDatabase.child("users").child(user_id).child("TransactionHistory").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshots, @Nullable String s) {

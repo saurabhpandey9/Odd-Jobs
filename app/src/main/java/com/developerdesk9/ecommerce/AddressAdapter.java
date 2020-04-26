@@ -53,7 +53,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        final Address address=addressList.get(position);
+        final Address address=addressList.get(addressList.size()-position-1);
         holder.tvname.setText(address.getName());
         holder.tvaddress.setText(address.getAddress());
 
