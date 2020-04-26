@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import java.util.Map;
 public class AddnewAddressActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
+    private ProgressDialog progressdialog;
 
     private TextInputLayout address1;
     private TextInputLayout address2;
@@ -56,6 +58,11 @@ public class AddnewAddressActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addnew_address);
+
+        progressdialog=new ProgressDialog(this);
+        progressdialog.setTitle("Please wait..");
+        progressdialog.setMessage("Updating..");
+        progressdialog.setCanceledOnTouchOutside(false);
 
 
 
@@ -145,6 +152,7 @@ public class AddnewAddressActivity extends AppCompatActivity {
             return;
         }
 
+        progressdialog.show();
 
         String key=mDatabase.child("users").child(user_id).child("Address").push().getKey();
 
@@ -160,10 +168,12 @@ public class AddnewAddressActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
+                    progressdialog.dismiss();
                     Toast.makeText(getApplicationContext(),"Address Add",Toast.LENGTH_LONG).show();
                     finish();
                 }
                 else {
+                    progressdialog.dismiss();
                     Toast.makeText(getApplicationContext(),"Failed...",Toast.LENGTH_LONG).show();
                 }
             }

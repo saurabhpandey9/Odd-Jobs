@@ -289,7 +289,7 @@ public class AddNewProductActivity extends AppCompatActivity {
             filePath = data.getData();
 
             try {
-                Picasso.get().load(filePath).fit().into(imageView5);
+                Picasso.get().load(filePath).fit().centerCrop().into(imageView5);
             } catch (Exception e) {
                 e.printStackTrace();
             }

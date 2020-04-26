@@ -61,8 +61,6 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                app:counterMaxLength="10"
-                app:counterEnabled="true"
                 android:id="@+id/etLmobileno"
                 style="@style/TextLabel"
                 android:layout_marginBottom="@dimen/activity_margin_half"

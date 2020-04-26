@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import java.util.Map;
 
 public class UpdateUserDetails extends AppCompatActivity {
 
+    private ProgressDialog progressDialog;
     private Toolbar toolbar;
     private DatabaseReference mDatabase;
     private FirebaseUser currentUser;
@@ -44,6 +46,10 @@ public class UpdateUserDetails extends AppCompatActivity {
         setContentView(R.layout.activity_update_user_details);
 
 
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle("Please wait..");
+        progressDialog.setMessage("Updating..");
+        progressDialog.setCanceledOnTouchOutside(false);
 
         update1=findViewById(R.id.update_info_tv1);
         update2=findViewById(R.id.update_info_tv2);
@@ -70,6 +76,7 @@ public class UpdateUserDetails extends AppCompatActivity {
             sendToLogin();
         }
         user_id = currentUser.getUid();
+        progressDialog.show();
 
         mDatabase.child("users").child(user_id).addValueEventListener(new ValueEventListener() {
             @Override
@@ -78,6 +85,7 @@ public class UpdateUserDetails extends AppCompatActivity {
                 try {
                     update1.getEditText().setText(dataSnapshot.child("name").getValue().toString());
                     update2.getEditText().setText(dataSnapshot.child("mobilenumber").getValue().toString());
+                    progressDialog.dismiss();
                 }catch (Exception e){
 
                 }
@@ -117,6 +125,7 @@ public class UpdateUserDetails extends AppCompatActivity {
                 return;
             }
         }
+        progressDialog.show();
 
         Map<String, Object> data=new HashMap<>();
         data.put("name",supdate1);
@@ -128,9 +137,11 @@ public class UpdateUserDetails extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
 
+                    progressDialog.dismiss();
                     finish();
                 }
                 else {
+                    progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(),"Failed!",Toast.LENGTH_LONG).show();
                 }
             }

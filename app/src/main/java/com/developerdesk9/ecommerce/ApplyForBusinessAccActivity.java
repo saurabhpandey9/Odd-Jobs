@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import java.util.Map;
 public class ApplyForBusinessAccActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+    private ProgressDialog progressDialog;
 
     private DatabaseReference mDatabase;
     private FirebaseUser currentUser;
@@ -51,6 +53,11 @@ public class ApplyForBusinessAccActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle("Please wait..");
+        progressDialog.setMessage("Updating..");
+        progressDialog.setCanceledOnTouchOutside(false);
 
         tv_apply_business1=findViewById(R.id.newbusiness_account1);
         tv_apply_business2=findViewById(R.id.newbusiness_account2);
@@ -124,6 +131,7 @@ public class ApplyForBusinessAccActivity extends AppCompatActivity {
             tv_apply_business6.setError("Please Enter Strong Password");
             return;
         }
+        progressDialog.show();
 
         Map<String,Object> data=new HashMap();
         data.put("company_owner",string_apply_business1);
@@ -140,12 +148,14 @@ public class ApplyForBusinessAccActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
+                    progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(),"Applied Successfully",Toast.LENGTH_LONG).show();
                     Toast.makeText(getApplicationContext(),"Please Wait for 15 day until we verify your data",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(),SplashScreen.class));
                     finishAffinity();
                 }
                 else {
+                    progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(),"Failed",Toast.LENGTH_LONG).show();
                 }
             }
@@ -153,6 +163,7 @@ public class ApplyForBusinessAccActivity extends AppCompatActivity {
     }
 
     private void sendToLogin() {
+        progressDialog.dismiss();
         mAuth.signOut();
         Intent loginIntent = new Intent(getApplicationContext(),login.class);
         startActivity(loginIntent);

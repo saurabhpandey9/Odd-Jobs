@@ -1,8 +1,10 @@
 package com.developerdesk9.ecommerce;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -63,6 +65,15 @@ public class SignUp extends AppCompatActivity {
                 final String name=etRName.getEditText().getText().toString().trim();
                 final String mobileno=etRMobileno.getEditText().getText().toString().trim();
 
+
+                etRName.setError(null);
+                etRMobileno.setError(null);
+                etREmail.setError(null);
+                etRPassword.setError(null);
+                etRPassword.setError(null);
+
+
+
                 if (name.isEmpty()){
                     etRName.setError("Enter name");
                     return;
@@ -81,6 +92,7 @@ public class SignUp extends AppCompatActivity {
                     return;
                 } else if (password.isEmpty() || password.length()<6) {
                     etRPassword.setError("Enter strong Password");
+                    alertpassword();
                     return;
                 } else {
                     loader.setVisibility(View.VISIBLE);
@@ -152,7 +164,24 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+    }
 
 
+    public void alertpassword(){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage("Please Enter Strong Password\nYour Password should be at least 6 characters having upper" +
+                ",lower case letters,numbers and Special symbol like !@%$*& ");
+        builder1.setCancelable(false);
+
+        builder1.setPositiveButton(
+                "Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 }
