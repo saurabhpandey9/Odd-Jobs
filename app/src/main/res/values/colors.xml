@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1F6CF0</color>
-    <color name="colorPrimaryDark">#1F6CF0</color>
-    <color name="colorAccent">#1F6CF0</color>
+    <color name="colorPrimary">#039be5</color>
+    <color name="colorPrimaryDark">#039be5</color>
+    <color name="colorAccent">#039be5</color>
     <color name="colorBlack">#000000</color>
     <color name="colorTransparentBlack">#99000000</color>
     <color name="colorWhiteTransparent">#99ffffff</color>
@@ -16,7 +16,7 @@
 
 
     <!--my account related color -->
-    <color name="toolbar">#1F6CF0</color>
+    <color name="toolbar">#039be5</color>
     <color name="my_account_color">#FFFF</color>
     <color name="Text_color_heading_cardview">#070707</color>
     <color name="Text_color_link_cardview">#00008b</color>
@@ -24,19 +24,8 @@
 
     <color name="Orange">#FA5A2C</color>
 
-
-
-
-    <color name="selected_product_count">#4d4d4d</color>
-    <color name="list_product_name">#121212</color>
     <color name="list_products_price">#4d4d4d</color>
-    <color name="gradient_2">#3e3e3e</color>
-    <color name="bg_separator">#DA707070</color>
-    <color name="border_remove_item">#fc9898</color>
-    <color name="btn_remove_item">#fc2222</color>
-    <color name="red_dull">#FC5A5A</color>
-    <color name="bg_input_form">#FFEB6E</color>
     <color name="hint_label">#4E4E4E</color>
     <color name="grey">#5b5b5b</color>
-    <color name="lbl_secondary">#8d8d8d</color>
+
 </resources>

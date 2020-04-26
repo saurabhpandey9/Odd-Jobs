@@ -23,6 +23,7 @@ public class Products {
         this.company_key = company_key;
     }
 
+
     public String getProduct_image() {
         return product_image;
     }

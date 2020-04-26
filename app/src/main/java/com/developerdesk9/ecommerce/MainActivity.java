@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mContext=MainActivity.this;
+
         tv_noitem=findViewById(R.id.tv_main_activity_no_item);
 
         Toolbar toolbar = findViewById(R.id.toolbar); // toolbar initialization

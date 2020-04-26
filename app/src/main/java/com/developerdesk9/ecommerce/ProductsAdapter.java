@@ -57,19 +57,11 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int position) {
+
         final Products products = productsList.get(productsList.size()-position-1);
 
 
-        Picasso.get().load(products.getProduct_image()).fit().into(viewHolder.productIV, new Callback() {
-            @Override
-            public void onSuccess() {
-            }
-
-            @Override
-            public void onError(Exception e) {
-
-            }
-        });
+        Picasso.get().load(products.getProduct_image()).fit().into(viewHolder.productIV);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
