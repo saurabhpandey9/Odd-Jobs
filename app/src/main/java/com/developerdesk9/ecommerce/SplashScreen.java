@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class SplashScreen extends AppCompatActivity {
 
     private ImageView logo;
+    private int versionCode;
+    private String versionName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +21,12 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         logo=findViewById(R.id.splashlogo);
+
+        versionCode = BuildConfig.VERSION_CODE;
+        versionName = BuildConfig.VERSION_NAME;
+
+
+        Toast.makeText(getApplicationContext(),versionCode+versionName,Toast.LENGTH_LONG).show();
 
 
         Animation animation = AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotation);
@@ -29,9 +38,9 @@ public class SplashScreen extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-
-                startActivity(new Intent(getApplicationContext(),login.class));
-                finishAffinity();
+//
+//                startActivity(new Intent(getApplicationContext(),login.class));
+//                finishAffinity();
 
 //                if (ConnectivityReceiver.isConnected()) {
 //                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
