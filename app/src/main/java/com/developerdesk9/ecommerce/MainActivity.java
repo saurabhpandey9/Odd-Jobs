@@ -1,5 +1,6 @@
 package com.developerdesk9.ecommerce;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -25,6 +27,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.wang.avi.AVLoadingIndicatorView;
 
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -41,10 +44,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.view.View.INVISIBLE;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    private TextView tv_noitem;
 
     private RecyclerView recyclerview;
     private FirebaseAuth mAuth;
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Context mContext;
     public DrawerLayout drawer;
     private NavigationView navigationView;
+    private AVLoadingIndicatorView loader;
 
 
     @Override
@@ -65,7 +70,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mContext=MainActivity.this;
 
-        tv_noitem=findViewById(R.id.tv_main_activity_no_item);
+//        tv_noitem=findViewById(R.id.tv_main_activity_no_item);
+        loader=findViewById(R.id.loader_main_activity);
+        loader.setClickable(false);
 
         Toolbar toolbar = findViewById(R.id.toolbar); // toolbar initialization
         setSupportActionBar(toolbar);   // setting it on action bar
@@ -100,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Todo ::  home layout implementation
 
         recyclerview = findViewById(R.id.recyclerview);
-        productsAdapter = new ProductsAdapter(productsLists, mContext);
+        productsAdapter = new ProductsAdapter(productsLists, mContext,loader);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext);
         recyclerview.setLayoutManager(layoutManager);
         recyclerview.setAdapter(productsAdapter);
@@ -263,16 +270,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         productsLists.clear();
         productsAdapter.notifyDataSetChanged();
 
-        tv_noitem.setVisibility(View.VISIBLE);
+//        tv_noitem.setVisibility(View.VISIBLE);
 
         getSupportActionBar().setTitle(product_type.toUpperCase()); // change the Actionbar title
 
+        loader.setVisibility(View.VISIBLE);
         if (product_type != null) {
             mDatabase.child("products").child(product_type).addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     if (dataSnapshot.exists()) {
-                        tv_noitem.setVisibility(View.INVISIBLE);
+//                        tv_noitem.setVisibility(INVISIBLE);
                         Products products = dataSnapshot.getValue(Products.class);
                         productsLists.add(products);
                         productsAdapter.notifyDataSetChanged();
@@ -303,6 +311,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
 
         }
+
+
+
     }
 
 

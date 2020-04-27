@@ -3,6 +3,7 @@ package com.developerdesk9.ecommerce;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,16 +23,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import com.wang.avi.AVLoadingIndicatorView;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
-public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder> {
+
+public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder>  {
 
     private List<Products> productsList;
     private Context mContext;
@@ -40,12 +38,14 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private DatabaseReference mDatabase;
+    private AVLoadingIndicatorView loader;
 
     private String user_id;
 
-    public ProductsAdapter(List<Products> productsList, Context mContext) {
+    public ProductsAdapter(List<Products> productsList, Context mContext,AVLoadingIndicatorView loader) {
         this.productsList = productsList;
         this.mContext = mContext;
+        this.loader=loader;
     }
 
     @NonNull
@@ -57,9 +57,17 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int position) {
-
         final Products products = productsList.get(productsList.size()-position-1);
 
+
+        loader.hide();
+
+
+        Log.d("size",""+productsList.size());
+
+//        if (productsList.size()==0){
+//            tv_noitem.setVisibility(View.VISIBLE);
+//        }
 
         Picasso.get().load(products.getProduct_image()).fit().into(viewHolder.productIV);
 
@@ -69,12 +77,16 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
         user_id = currentUser.getUid();
 
-        // for comma seperate
+        // for comma separate
         String newNumber = CommaSeperate.getFormatedNumber(products.getProduct_price());
         viewHolder.tvProductPrice.setText("₹" + newNumber);
 
         viewHolder.tvProductName.setText(products.getProduct_name());
         viewHolder.tvSellerName.setText("by " + products.getCompany_name());
+
+
+
+
         viewHolder.productcv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +113,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                 productIntent.putExtra("product_description", products.getProduct_description());
                 productIntent.putExtra("company_name", products.getCompany_name());
                 productIntent.putExtra("from_cart", "no");
+                productIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // This was the problem of crash
                 mContext.startActivity(productIntent);
             }
         });
@@ -140,6 +153,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         private LinearLayout productcv;
         private ProgressBar progressBar3;
         private Button buy_now_btn_pl, button15;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

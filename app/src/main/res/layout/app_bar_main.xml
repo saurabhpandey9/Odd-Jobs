@@ -21,12 +21,27 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
+        android:visibility="invisible"
         android:id="@+id/tv_main_activity_no_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:textAlignment="center"
         android:text="No Item found!" />
+
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/loader_main_activity"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:background="@drawable/button_color"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        android:clickable="false"
+        app:indicatorColor="#FFFFFF"
+        app:indicatorName="LineScalePulseOutIndicator" />
+
+
 
     <include layout="@layout/content_main" />
 
