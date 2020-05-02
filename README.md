@@ -64,12 +64,13 @@ Odd Jobs is an Android based E-Commerce Application that can be used by buyer an
 
 ## Basic Layout
 
-|![](Documentation/Screenshot/Screenshot_2020-05-01-20-25-07-136_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-25-20-086_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-25-28-690_com.developerdesk9.ecommerce.jpg)|
+
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-25-07-136_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-25-20-086_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-25-28-690_com.developerdesk9.ecommerce.jpg?raw=true)|
 |:---:|:---:|:---:|
 |**SplashScreen**|**Login Page**|**Signup Page**|
 
 
-|![](Documentation/Screenshot/Screenshot_2020-05-01-20-25-24-492_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-14-025_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-02-17-37-37-250_com.developerdesk9.ecommerce.jpg)|
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-25-24-492_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-14-025_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-02-17-37-37-250_com.developerdesk9.ecommerce.jpg?raw=true)|
 |:---:|:---:|:---:|
 |**Forget/Change Password**|**Password Suggestion**|**Update Alert Dialog**|
 
@@ -79,42 +80,42 @@ Odd Jobs is an Android based E-Commerce Application that can be used by buyer an
 
 
 
-|![](Documentation/Screenshot/Screenshot_2020-05-01-20-29-28-252_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-02-20-16-29-197_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-30-40-187_com.developerdesk9.ecommerce.jpg)|
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-29-28-252_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-02-20-16-29-197_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-30-40-187_com.developerdesk9.ecommerce.jpg?raw=true)|
 |:---:|:---:|:---:|
 |**My Account**|**My Account II**|**Address Layout**|
 
 
-|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-31-563_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-10-024_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-22-323_com.developerdesk9.ecommerce.jpg)|
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-31-563_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-10-024_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-22-323_com.developerdesk9.ecommerce.jpg?raw=true)|
 |:---:|:---:|:---:|
 |**Main Dashboard with Process Dialog**|**Navigation Drawer with Product Catalog**|**Navigation Drawer II**|
 
-|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-36-730_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-33-422_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-02-17-37-02-967_com.developerdesk9.ecommerce.jpg)|
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-36-730_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-33-422_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-02-17-37-02-967_com.developerdesk9.ecommerce.jpg?raw=true)|
 |:---:|:---:|:---:|
 |**Product catalog for Electronics**|**Product Calatog Home & Appliances**|**Product Calatog for Beauty & Personal Product**|
 
 
-|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-46-226_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-58-004_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-32-09-425_com.developerdesk9.ecommerce.jpg)|
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-46-226_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-58-004_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-32-09-425_com.developerdesk9.ecommerce.jpg?raw=true)|
 |:---:|:---:|:---:|
 |**Detail View of selected product**|**Detail View of selected product-II**|**Order Summary with shipping details**|
 
 
-|![](Documentation/Screenshot/Screenshot_2020-05-01-20-32-56-620_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-33-05-153_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-33-27-180_com.developerdesk9.ecommerce.jpg)|
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-32-56-620_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-33-05-153_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-33-27-180_com.developerdesk9.ecommerce.jpg?raw=true)|
 |:---:|:---:|:---:|
 |**Payment Option**|**Cash on delivery (COD)**|**Payment using Gpay/phonepay/paytm**|
 
-|![](Documentation/Screenshot/Screenshot_2020-05-01-20-33-33-371_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-34-03-577_com.phonepe.app.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-34-11-932_com.phonepe.app.jpg)|
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-33-33-371_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-34-03-577_com.phonepe.app.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-34-11-932_com.phonepe.app.jpg?raw=true)|
 |:---:|:---:|:---:|
 |**Select payment Option**|**Final Payment**|**Payment confirmation**|
 
 
-|![](Documentation/Screenshot/Screenshot_2020-05-01-20-34-15-707_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-44-388_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-54-475_com.developerdesk9.ecommerce.jpg)|
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-34-15-707_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-44-388_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-54-475_com.developerdesk9.ecommerce.jpg?raw=true)|
 |:---:|:---:|:---:|
 |**Transaction Details**|**All Order Details**|**My Cart**|
 
 
 ## Business Account Layout
 
-|![](Documentation/Screenshot/Screenshot_2020-05-02-20-16-29-197_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-02-20-16-43-159_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-02-20-17-04-128_com.developerdesk9.ecommerce.jpg)|
+|![](Documentation/Screenshot/Screenshot_2020-05-02-20-16-29-197_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-02-20-16-43-159_com.developerdesk9.ecommerce.jpg?raw=true)|![](Documentation/Screenshot/Screenshot_2020-05-02-20-17-04-128_com.developerdesk9.ecommerce.jpg?raw=true)|
 |:---:|:---:|:---:|
 |**Apply for Business Account**|**Fill Retailer Details**|**Wait until Odd Jobs verify your details**|
 
