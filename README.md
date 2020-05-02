@@ -2,16 +2,18 @@
 <p align="center"><img src="Documentation/icon/logo.png" width="400"></p>
 
 <p align="center">
-<a href=""><img src="Documentation/icon/build.svg" alt="Build Status"></a>
-<a href="https://github.com/saurabhpandey9/Odd-Jobs"><img src="Documentation/icon/stable.svg" alt="Latest Stable Version"></a>
-<a href="LICENSE"><img src="Documentation/icon/license.svg" alt="License"></a>
+<a href=""><img src="Documentation/icon/build.svg" target="_blank" alt="Build Status"></a>
+<a href="https://github.com/saurabhpandey9/Odd-Jobs"><img src="Documentation/icon/stable.svg" target="_blank" alt="Latest Stable Version"></a>
+<a href="Documentation/odd jobs version 1.0.0.1.apk" target="_blank"><img src="Documentation/icon/apk.svg" alt=""><a>
+<a href="LICENSE"><img src="Documentation/icon/license.svg" alt="License"><a>
 <br>
-<a href="https://www.linkedin.com/in/saurabh17100"><img src="Documentation/icon/linkedin.svg" alt="License"></a>
+<a href="https://www.linkedin.com/in/saurabh17100" target="_blank"><img src="Documentation/icon/linkedin.svg" alt="Linkedin"></a>
 </p>
 
 
-# Odd Jobs #
 
+
+# Odd Jobs #
 
 Odd Jobs is an Android based E-Commerce Application that can be used by buyer and seller to perform various activities related to purchasing and selling of goods.
 
@@ -59,6 +61,7 @@ Odd Jobs is an Android based E-Commerce Application that can be used by buyer an
 * Email verification is added
 * Login details and device id verification to avoid fraud and Spamming
 * device block if unusual activity detected
+
 
 # Screenshots #
 
@@ -137,16 +140,39 @@ Odd Jobs is an Android based E-Commerce Application that can be used by buyer an
 ## Contributing
 You are welcome to contribute :
 
-1. [Fork it](https://github.com/saurabhpandey9/Odd-Jobs/fork)
+1. [Fork it](https://github.com/saurabhpandey9/Odd-Jobs/fork) :`https://github.com/saurabhpandey9/Odd-Jobs/fork`
 2. Create new branch : `git checkout -b new_feature`
 3. Commit your changes : `git commit -am 'Added new_feature'`
 4. Push to the branch : `git push origin new_feature`
 5. Submit a pull request !
 
+
+
+## Author 
+**Thanks for going through this Repository! Have a nice day.**</br>
+</br>**Saurabh Pandey**</br> 
+#### Contact :`saurabh17100@gmail.com`
+<p align="left">
+<a href="https://github.com/saurabhpandey9/" target="_blank"><img src="Documentation/icon/github.svg" height ="40" alt="Gmail"></a>
+<a href="mailto:saurabh17100@gmail.com" target="_blank"><img src="Documentation/icon/mail.svg" height ="40" alt="Gmail"></a>
+<a href="mailto:saurabh17100@iiitnr.edu.in" target="_blank"><img src="Documentation/icon/mail1.svg" height ="40" alt="Gmail"></a>
+<a href="https://www.linkedin.com/in/saurabh17100" target="_blank"><img src="Documentation/icon/linkedin.svg" alt="License"></a>
+</p>
+
 ## License
 This Project is licensed under the MIT License, see the [LICENSE](LICENSE) file for details.
 
-## Final Notes
-**Thanks for going through this Repository! Have a nice day.**</br>
-</br>**Saurabh Pandey**</br> 
-Contact me : saurabh17100@gmail.com
+## Acknowledgment ##
+
+The success and final outcome of this project required a lot of guidance and assistance from many people and I am extremely privileged to have got this all along the completion of my project. All that I have done is only due to such supervision and assistance and I would not forget to thank them.
+
+I respect and thank
+
+ * [Saurabh Kumar Singh](https://github.com/imSrbh)
+ * [Shivam Narware](https://github.com/shivamnarware)
+ * [S Rohan Rao](https://github.com/rohanrao619)
+ * [Saurabh Roy](https://github.com/roysaurabh1308)
+ * [Punit Kunjam](https://github.com/pkunjam)
+
+ I am extremely thankful to [Saurabh kumar Singh](https://github.com/imSrbh) for providing such a nice support and guidance, although he had busy schedule managing the corporate affairs.
+
