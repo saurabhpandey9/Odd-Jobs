@@ -4,7 +4,7 @@
 <p align="center">
 <a href=""><img src="Documentation/icon/build.svg" target="_blank" alt="Build Status"></a>
 <a href="https://github.com/saurabhpandey9/Odd-Jobs"><img src="Documentation/icon/stable.svg" target="_blank" alt="Latest Stable Version"></a>
-<a href="Documentation/odd jobs version 1.0.0.1.apk" target="_blank"><img src="Documentation/icon/apk.svg" alt=""><a>
+<a href="Documentation/odd jobs version 1.0.0.1.apk" target="_blank"><img src="Documentation/icon/apk.svg" alt="Apk"><a>
 <a href="LICENSE"><img src="Documentation/icon/license.svg" alt="License"><a>
 <br>
 <a href="https://www.linkedin.com/in/saurabh17100" target="_blank"><img src="Documentation/icon/linkedin.svg" alt="Linkedin"></a>
@@ -153,10 +153,10 @@ You are welcome to contribute :
 </br>**Saurabh Pandey**</br> 
 #### Contact :`saurabh17100@gmail.com`
 <p align="left">
-<a href="https://github.com/saurabhpandey9/" target="_blank"><img src="Documentation/icon/github.svg" height ="40" alt="Gmail"></a>
+<a href="https://github.com/saurabhpandey9/" target="_blank"><img src="Documentation/icon/github.svg" height ="40" alt="github"></a>
 <a href="mailto:saurabh17100@gmail.com" target="_blank"><img src="Documentation/icon/mail.svg" height ="40" alt="Gmail"></a>
-<a href="mailto:saurabh17100@iiitnr.edu.in" target="_blank"><img src="Documentation/icon/mail1.svg" height ="40" alt="Gmail"></a>
-<a href="https://www.linkedin.com/in/saurabh17100" target="_blank"><img src="Documentation/icon/linkedin.svg" alt="License"></a>
+<a href="mailto:saurabh17100@iiitnr.edu.in" target="_blank"><img src="Documentation/icon/mail1.svg" height ="40" alt="College Mail"></a>
+<a href="https://www.linkedin.com/in/saurabh17100" target="_blank"><img src="Documentation/icon/linkedin.svg" alt="Linkedin"></a>
 </p>
 
 ## License
