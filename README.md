@@ -4,7 +4,8 @@
 <p align="center">
 <a href=""><img src="Documentation/icon/build.svg" alt="Build Status"></a>
 <a href="https://github.com/saurabhpandey9/Odd-Jobs"><img src="Documentation/icon/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://github.com/saurabhpandey9/Odd-Jobs"><img src="Documentation/icon/license.svg" alt="License"></a>
+<a href="LICENSE"><img src="Documentation/icon/license.svg" alt="License"></a>
+<br>
 <a href="https://www.linkedin.com/in/saurabh17100"><img src="Documentation/icon/linkedin.svg" alt="License"></a>
 </p>
 
@@ -61,52 +62,74 @@ Odd Jobs is an Android based E-Commerce Application that can be used by buyer an
 
 # Screenshots #
 
-## * Basic Layout
+## Basic Layout
 
 |![](Documentation/Screenshot/Screenshot_2020-05-01-20-25-07-136_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-25-20-086_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-25-28-690_com.developerdesk9.ecommerce.jpg)|
 |:---:|:---:|:---:|
 |**SplashScreen**|**Login Page**|**Signup Page**|
 
 
-|![](Documentation/Screenshot/Screenshot_2020-05-01-20-25-24-492_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-14-025_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/developerdesk9.ecommerce.jpg)|
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-25-24-492_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-14-025_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-02-17-37-37-250_com.developerdesk9.ecommerce.jpg)|
 |:---:|:---:|:---:|
-|**Forget/Change Password**|**Login Page**|**Signup Page**|
+|**Forget/Change Password**|**Password Suggestion**|**Update Alert Dialog**|
 
 
 
+## Customer Account Layout
 
 
-|![](Documentation/Screenshot/User_Home_Page.png)|![](Documentation/Screenshot/Admin_Home_Page.png)|![](Documentation/Screenshot/Add_Book_Page.png)|
+
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-29-28-252_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-02-20-16-29-197_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-30-40-187_com.developerdesk9.ecommerce.jpg)|
 |:---:|:---:|:---:|
-|**User Home Page**|**Admin Home Page**|**Add Book Page**|
+|**My Account**|**My Account II**|**Address Layout**|
 
-|![](Documentation/Screenshot/Remove_Book_Page.png)|![](Documentation/Screenshot/Update_Book_Page.png)|![](Documentation/Screenshot/Issue_Book_Page.png)|
+
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-31-563_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-10-024_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-22-323_com.developerdesk9.ecommerce.jpg)|
 |:---:|:---:|:---:|
-|**Remove Book Page**|**Update Book Page**|**Issue Book Page**|
+|**Main Dashboard with Process Dialog**|**Navigation Drawer with Product Catalog**|**Navigation Drawer II**|
 
-|![](Documentation/Screenshot/Return_Book_Page.png)|![](Documentation/Screenshot/Reissue_Book_Page.png)|![](Documentation/Screenshot/Collect_Fine_Page.png)|
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-36-730_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-33-422_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-02-17-37-02-967_com.developerdesk9.ecommerce.jpg)|
 |:---:|:---:|:---:|
-|**Return Book Page**|**Reissue Book Page**|**Collect Fine Page**|
+|**Product catalog for Electronics**|**Product Calatog Home & Appliances**|**Product Calatog for Beauty & Personal Product**|
 
-|![](Documentation/Screenshot/Collect_Fine_Confirmation_Page.png)|![](Documentation/Screenshot/Search_Book_Page.png)|![](Documentation/Screenshot/Search_Book_Results.png)|
+
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-46-226_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-26-58-004_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-32-09-425_com.developerdesk9.ecommerce.jpg)|
 |:---:|:---:|:---:|
-|**Collect Fine Confirmation**|**Search Book Page**|**Search Book Results**|
+|**Detail View of selected product**|**Detail View of selected product-II**|**Order Summary with shipping details**|
 
-|![](Documentation/Screenshot/See_Issued_Books_Page.png)|![](Documentation/Screenshot/User_Reissue_Book_Page.png)|![](Documentation/Screenshot/New_Book_Added_Notification.png)|
+
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-32-56-620_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-33-05-153_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-33-27-180_com.developerdesk9.ecommerce.jpg)|
 |:---:|:---:|:---:|
-|**See Issued Books Page**|**User Reissue Book Page**|**New Book Added Notification**|
+|**Payment Option**|**Cash on delivery (COD)**|**Payment using Gpay/phonepay/paytm**|
 
-|<img src=Screenshots/Deadline_Approaching_Notification.png width="267">|<img src=Screenshots/Fine_Increased_Notification.png width="267">|
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-33-33-371_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-34-03-577_com.phonepe.app.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-34-11-932_com.phonepe.app.jpg)|
+|:---:|:---:|:---:|
+|**Select payment Option**|**Final Payment**|**Payment confirmation**|
+
+
+|![](Documentation/Screenshot/Screenshot_2020-05-01-20-34-15-707_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-44-388_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-01-20-27-54-475_com.developerdesk9.ecommerce.jpg)|
+|:---:|:---:|:---:|
+|**Transaction Details**|**All Order Details**|**My Cart**|
+
+
+## Business Account Layout
+
+|![](Documentation/Screenshot/Screenshot_2020-05-02-20-16-29-197_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-02-20-16-43-159_com.developerdesk9.ecommerce.jpg)|![](Documentation/Screenshot/Screenshot_2020-05-02-20-17-04-128_com.developerdesk9.ecommerce.jpg)|
+|:---:|:---:|:---:|
+|**Apply for Business Account**|**Fill Retailer Details**|**Wait until Odd Jobs verify your details**|
+
+
+|<img src=Documentation/Screenshot/Screenshot_2020-05-01-20-30-32-959_com.developerdesk9.ecommerce.jpg width="267">|<img src=Documentation/Screenshot/Screenshot_2020-05-01-20-31-17-973_com.developerdesk9.ecommerce.jpg width="267">|
 |:---:|:---:|
-|**Deadline Approaching Notification**|**Fine Increased Notification**|
+|**Business Account Approved**|**Now sell your Products**|
 
 
 
 ## Tools Used
 * [Android Studio](https://developer.android.com/studio) : Used as the Android developement environment.
-* [Firebase Realtime Database](https://firebase.google.com/products/firestore) : Used as the backend database.
-* [Firebase Storage](https://cloud.google.com/functions) : Use to store product Image
-* [Firebase Authentication](https://firebase.google.com/products/cloud-messaging) : Used to manage User information
+* [Firebase Realtime Database](https://firebase.google.com/products/realtime-database) : Used as the backend database.
+* [Firebase Storage](https://firebase.google.com/products/storage) : Use to store product Image
+* [Firebase Authentication](https://firebase.google.com/products/auth) : Used to manage User information
 
 
 
