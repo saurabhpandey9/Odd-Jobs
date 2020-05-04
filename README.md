@@ -180,4 +180,7 @@ I respect and thank
  * [Rajiv Nayan Choubey](https://github.com/rajivnayanc)
 
  I am extremely thankful to [Saurabh Kumar Singh](https://github.com/imSrbh) for providing such nice support and guidance, although he had a busy schedule managing the corporate affairs.
+ <br>
+<br>
+<p align="center"><img src="Documentation/icon/thank-you.png" height=50></p>
 
