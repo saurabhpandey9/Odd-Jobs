@@ -1,5 +1,5 @@
 
-<p align="center"><img src="Documentation/icon/logo.png" width="75%"></p>
+<p align="center"><img src="Documentation/icon/logo.png" width="55%"></p>
 
 <p align="center">
 <a href=""><img src="Documentation/icon/build.svg" target="_blank" alt="Build Status"></a>
