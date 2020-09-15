@@ -4,7 +4,7 @@
 <p align="center">
 <a href=""><img src="Documentation/icon/build.svg" target="_blank" alt="Build Status"></a>
 <a href="https://github.com/saurabhpandey9/Odd-Jobs"><img src="Documentation/icon/stable.svg" target="_blank" alt="Latest Stable Version"></a>
-<a href="Documentation/odd jobs version 1.0.0.1.apk" target="_blank"><img src="Documentation/icon/apk.svg" alt="Apk"><a>
+<a href="http://bit.ly/e-commerce-app-odd-jobs" target="_blank"><img src="Documentation/icon/apk.svg" alt="Apk"><a>
 <a href="LICENSE"><img src="Documentation/icon/license.svg" alt="License"><a>
 <br>
 <a href="https://www.linkedin.com/in/saurabh17100" target="_blank"><img src="Documentation/icon/linkedin.svg" alt="Linkedin"></a>
